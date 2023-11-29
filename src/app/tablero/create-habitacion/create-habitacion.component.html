@@ -1,0 +1,27 @@
+<div class="container">
+    <h2 class="center">Editar Habitación</h2>
+  
+    <form [formGroup]="formulario" class="form-grid">
+      <mat-label class="label">Estado:</mat-label>
+      <mat-form-field class="field">
+        <mat-select formControlName="estado">
+          <mat-option *ngFor="let estado of estados" [value]="estado">{{ estado }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+  
+      <mat-label class="label">Habitación:</mat-label>
+      <mat-form-field class="field">
+        <input type="number" matInput formControlName="num_habitacion" readonly/>
+      </mat-form-field>
+  
+      <mat-label class="label">Comentario:</mat-label>
+      <mat-form-field class="field">
+        <textarea matInput formControlName="comentario"></textarea>
+      </mat-form-field>
+  
+      <div class="boton">
+        <button class="center" mat-button (click)="guardar()">Guardar</button>
+      </div>
+    </form>
+  </div>
+  

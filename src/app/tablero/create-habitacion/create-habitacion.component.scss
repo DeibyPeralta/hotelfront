@@ -1,0 +1,30 @@
+.container {
+    margin: 0 30px; 
+    margin-bottom: 20px; 
+  }
+  
+  .form-grid {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    grid-gap: 10px;
+  }
+  
+  .label {
+    text-align: right;
+    grid-column: 1;
+    grid-row: span 2;
+  }
+  
+  .field {
+    grid-column: 2;
+    grid-row: span 2;
+  }
+  
+  .center{
+    text-align: center;
+  }
+  
+  .boton {
+    display: flex;
+    justify-content: center;
+  }

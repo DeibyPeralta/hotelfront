@@ -1,0 +1,24 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Ajusta la altura mínima según tus necesidades */
+    background-color: #6c6767d5; /* Agrega un color de fondo si lo deseas */
+}
+
+.login-card {
+    max-width: 400px; /* Ajusta el ancho máximo de la tarjeta según tus necesidades */
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: white;
+}
+
+.center-button {
+    display: block;
+    margin: 0 auto;
+}
+
+.example-full-width{
+    width: 320px;
+}

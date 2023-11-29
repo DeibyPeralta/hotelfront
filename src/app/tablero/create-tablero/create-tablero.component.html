@@ -1,0 +1,54 @@
+<mat-card class="form-card">
+    <div class="container">
+      <form [formGroup]="formulario" (ngSubmit)="enviarFormulario()">
+        <div class="form-columns">
+          <div class="form-column">
+            <div class="form-field">
+              <mat-form-field>
+                <mat-label>Número de Habitación</mat-label>
+                <input matInput formControlName="num_habitacion" readonly>
+              </mat-form-field>
+            </div>
+            <div class="form-field">
+              <mat-form-field>
+                <mat-label>Interno</mat-label>
+                <input matInput formControlName="interno">
+              </mat-form-field>
+            </div>
+            <div class="form-field">
+              <mat-form-field>
+                <mat-label>Hora de Llegada</mat-label>
+                <input matInput formControlName="hora_llegada">
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="form-column">
+            <div class="form-field">
+              <mat-form-field>
+                <mat-label>Aseo</mat-label>
+                <input matInput formControlName="aseo">
+              </mat-form-field>
+            </div>
+            <div class="form-field">
+              <mat-form-field>
+                <mat-label>Llamada</mat-label>
+                <input matInput formControlName="llamada">
+              </mat-form-field>
+            </div>
+            <div class="form-field">
+              <mat-form-field>
+                <mat-label>Destino</mat-label>
+                <input matInput formControlName="destino">
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+        <div class="center-button">
+            <button type="submit" [disabled]="!isFormValid()" mat-raised-button color="primary" class="wider-button">
+              Registrar
+            </button>
+        </div>
+      </form>
+    </div>
+  </mat-card>
+  
