@@ -20,7 +20,12 @@ export class CreateHabitacionComponent {
               private fb: FormBuilder  ) {
 
         this.usuarioService.getMaxHab().subscribe( data =>{
-          this.habitacion = data[0].max_num_habitacion + 1;
+          
+          if( data[0].max_num_habitacion != null){
+            this.habitacion = data[0].max_num_habitacion + 1;
+          }else {
+            this.habitacion = 101;
+          }
           this.formulario.patchValue({ num_habitacion: this.habitacion });
         })
                 

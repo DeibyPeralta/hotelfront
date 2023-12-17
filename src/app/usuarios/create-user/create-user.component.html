@@ -1,0 +1,36 @@
+<div class="container">
+    <mat-card class="formulario-card">
+      <mat-card-header>
+        <mat-card-title>Formulario de registro</mat-card-title>
+      </mat-card-header>
+  
+      <mat-card-content>
+        <form [formGroup]="usuarioForm" (ngSubmit)="onSubmit()">
+          <mat-form-field class="example-full-width">
+            <input matInput formControlName="correo" placeholder="Correo electrónico">
+          </mat-form-field>
+  
+          <mat-form-field class="example-full-width">
+            <input matInput formControlName="password" type="password" placeholder="Contraseña">
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width">
+            <input matInput formControlName="nombre" placeholder="Nombre">
+          </mat-form-field>
+  
+          <mat-form-field class="example-full-width">
+            <input matInput formControlName="cedula" placeholder="cedula">
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width">
+            <input matInput formControlName="telefono" placeholder="telefono">
+          </mat-form-field>
+    
+          <button type="submit" (click)="onSubmit()" mat-raised-button color="primary" [disabled]="usuarioForm.invalid">
+            Enviar
+          </button>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  

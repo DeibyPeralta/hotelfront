@@ -22,3 +22,8 @@
 .example-full-width{
     width: 320px;
 }
+
+.button-group {
+    display: flex;
+    justify-content: space-between;
+}

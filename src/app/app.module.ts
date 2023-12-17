@@ -23,6 +23,7 @@ import { EditarHabitacionComponent } from './usuarios/habitaciones/editar-habita
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 import { MatNativeDateModule } from '@angular/material/core';
+import { CreateUserComponent } from './usuarios/create-user/create-user.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     LoginComponent,
     HabitacionesComponent,
     EditarHabitacionComponent,
+    CreateUserComponent,
   ],
   imports: [    
     MatSelectModule,

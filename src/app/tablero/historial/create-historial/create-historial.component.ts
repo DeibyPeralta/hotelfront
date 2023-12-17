@@ -66,6 +66,5 @@ export class CreateHistorialComponent {
       this.fechaFormateada = `${dia}/${mes}/${anio}`;
 
       // console.log('Fecha formateada:', this.fechaFormateada);
-
     }
 }

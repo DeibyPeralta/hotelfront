@@ -7,7 +7,7 @@ import { Observable } from "rxjs";
 })
 export class UsuariosService {
 
-  baseUrl = 'http://localhost:3500';
+  baseUrl = 'http://localhost:3000';
 
   constructor(private http: HttpClient) { 
 
@@ -46,6 +46,10 @@ export class UsuariosService {
     return this.http.post(`${this.baseUrl}/tablero/editar-habitaciones`, body);
   }
 
+  editar_tablero(body: any): Observable<any> {
+    return this.http.post(`${this.baseUrl}/tablero/editar_tablero`, body);
+  }
+
   posthistorialHabitacion(body: any): Observable<any> {
     return this.http.post(`${this.baseUrl}/tablero/historial-habitaciones`, body);
   }
@@ -54,8 +58,8 @@ export class UsuariosService {
     return this.http.delete(`${this.baseUrl}/tablero/eliminar-habitaciones/${numHabitacion}`);
   }
 
-  captureFingerprint(): Observable<any> {
-    return this.http.get<any>(`${this.baseUrl}/usuarios/captureFingerprint`);
+  registro(body: any): Observable<any> {
+    return this.http.post<any>(`${this.baseUrl}/usuarios/registro`, body);
   }
   
 }
