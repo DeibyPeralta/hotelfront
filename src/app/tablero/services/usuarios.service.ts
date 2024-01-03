@@ -8,6 +8,7 @@ import { Observable } from "rxjs";
 export class UsuariosService {
 
   baseUrl = 'http://localhost:3000';
+  // baseUrl = 'https://hotel-valle.onrender.com';
 
   constructor(private http: HttpClient) { 
 
@@ -27,6 +28,8 @@ export class UsuariosService {
   }
 
   getDatosDeTablero(): Observable<any> {
+    console.log(this.baseUrl);
+    console.log('deiby');
     return this.http.get(`${this.baseUrl}/tablero/vista-tablero`);
   }
 

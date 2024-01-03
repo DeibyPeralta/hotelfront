@@ -15,7 +15,7 @@ import { EditarTableroComponent } from '../editar-tablero/editar-tablero.compone
 })
 export class VistaTableroComponent {
 
-  displayedColumns: string[] = ['num_habitacion', 'interno', 'hora_llegada', 'aseo', 'llamada', 'destino', 'acciones'];
+  displayedColumns: string[] = ['num_habitacion', 'interno', 'hora_llegada', 'aseo', 'llamada', 'destino', 'fechallegada', 'acciones'];
   dataSource!: MatTableDataSource<any>;
 
   constructor(private tableroService: UsuariosService,
@@ -25,11 +25,12 @@ export class VistaTableroComponent {
               }
 
   ngOnInit(): void {
-   
+    // this.cargarTabla();
   }
 
   cargarTabla() {
     this.tableroService.getDatosDeTablero().subscribe(data => {
+      console.log(data);
       this.dataSource = new MatTableDataSource(data);
     });
   }
