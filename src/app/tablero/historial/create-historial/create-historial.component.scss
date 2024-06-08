@@ -1,17 +1,44 @@
-.container {
-    margin: 0 30px; 
-    margin-bottom: 20px; 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-  
-.mat-elevation-z8 {
-    margin-top: 30px; 
-  }
+.scroll-container {
+  max-height: 550px; /* Ajusta esta altura según tus necesidades */
+  overflow-y: auto; /* Esto habilitará el scroll vertical si el contenido excede la altura máxima */
+}
 
-.agregar {
-    margin-top: 30px; 
-  }
-    
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Tres columnas de igual tamaño */
+  gap: 20px;
+  max-width: 1400px; /* Aumenta el ancho máximo según tus necesidades */
+  padding: 30px; /* Espacio interno del contenedor */
+}
+
+.form-item {
+  display: flex;
+  flex-direction: column;
+  width: 80%; /* Asegura que el campo ocupe todo el ancho disponible */
+  margin-left: 5px;
+}
+
+.field {
+  width: 100%;
+}
+
+// .small-field {
+//   width: 80%; /* Asegura que el campo ocupe todo el ancho disponible */
+//   margin-left: 5px;
+// }
+
+.label {
+  margin-bottom: 5px;
+}
+
+.boton {
+  grid-column: span 3; /* Hace que el botón ocupe toda la fila */
+  display: flex;
+  justify-content: center;
+}

@@ -26,6 +26,7 @@ export class CreateHabitacionComponent {
           }else {
             this.habitacion = 101;
           }
+          console.log(this.habitacion)
           this.formulario.patchValue({ num_habitacion: this.habitacion });
         })
                 

@@ -35,8 +35,7 @@ export class LoginComponent {
 
     this.usuarioservice.login(correo, password).subscribe(
       response => { 
-        console.log(response);
-        if(response === 'Contraseña incorrecta'){
+        if(response.isError == true){
           this.error();
           this.form.reset();
         }else {

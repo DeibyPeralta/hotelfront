@@ -1,75 +1,105 @@
-   
-<div class="container">
-    <h2 class="center">Crear Historial</h2>
-  
-    <form [formGroup]="formulario" class="form-grid">
-      <div class="form-column">
-            <mat-label class="label">Habitación:</mat-label>
-            <mat-form-field class="field">
-            <input type="number" matInput formControlName="num_habitacion" readonly/>
-            </mat-form-field> &nbsp; &nbsp; 
-    
-            <mat-label class="label">Interno:</mat-label>
-            <mat-form-field class="field">
-            <input type="text" matInput formControlName="interno" readonly/>
-            </mat-form-field>
-      </div>
-  
-      <div class="form-column">
-            <mat-label class="label">hora llegada:</mat-label>
-            <mat-form-field class="field">
-            <input type="text" matInput formControlName="hora_llegada" readonly/>
-            </mat-form-field> &nbsp; &nbsp; 
-    
-            <mat-label class="label">Aseo:</mat-label>
-            <mat-form-field class="field">
-            <input type="text" matInput formControlName="aseo" readonly/>
-            </mat-form-field>  
-      </div>
-
-      <div class="form-column">
-            <mat-label class="label">llamada:</mat-label>
-            <mat-form-field class="field">
-            <input type="text" matInput formControlName="llamada" readonly/>
-            </mat-form-field> &nbsp; &nbsp; 
-
-            <mat-label class="label">Destino:</mat-label>
-            <mat-form-field class="field">
-            <input type="text" matInput formControlName="destino" readonly/>
-            </mat-form-field>  
-      </div>
-
-      <div class="form-column">
-            <mat-label class="label">valor:</mat-label>
-            <mat-form-field class="field">
-            <input type="number" matInput formControlName="valor" required/>
-            </mat-form-field> &nbsp; &nbsp; 
-
-            <mat-label class="label">Comentario:</mat-label>
-            <mat-form-field class="field">
-            <input type="text" matInput formControlName="comentario"/>
-            </mat-form-field>  
-    </div>
-
-    <div class="form-column">
-            <mat-label class="label">Hora salida:</mat-label>
-            <mat-form-field class="field">
-            <input type="text" matInput formControlName="hora_salida" required/>
-            </mat-form-field> &nbsp; &nbsp; 
-
-            <mat-form-field>
-                  <mat-label>Fecha salida:</mat-label>
-                  <input matInput [matDatepicker]="picker" formControlName="fechaSalida" required>
+<div class="scroll-container">
+      <div class="container">
+            <h2 class="center">Crear Historial</h2>
+            <form [formGroup]="formulario" class="form-grid">
+              <div class="form-item">
+                <mat-label class="label">Habitación:</mat-label>
+                <mat-form-field class="field small-field">
+                  <input type="number" matInput formControlName="num_habitacion" readonly />
+                </mat-form-field>
+              </div>
+              <div class="form-item">
+                <mat-label class="label">hora llegada:</mat-label>
+                <mat-form-field class="field small-field">
+                  <input type="text" matInput formControlName="hora_llegada" readonly />
+                </mat-form-field>
+              </div>
+              <div class="form-item">
+                <mat-label class="label">llamada:</mat-label>
+                <mat-form-field class="field small-field">
+                  <input type="text" matInput formControlName="llamada" readonly />
+                </mat-form-field>
+              </div>
+              <div class="form-item">
+                <mat-label class="label">Interno:</mat-label>
+                <mat-form-field class="field small-field">
+                  <input type="text" matInput formControlName="interno" readonly />
+                </mat-form-field>
+              </div>
+              <div class="form-item">
+                <mat-label class="label">Placa:</mat-label>
+                <mat-form-field class="field small-field">
+                  <input type="text" matInput formControlName="placa" readonly />
+                </mat-form-field>
+              </div>
+              <div class="form-item">
+                <mat-label class="label">Aseo:</mat-label>
+                <mat-form-field class="field small-field">
+                  <input type="text" matInput formControlName="aseo" readonly />
+                </mat-form-field>
+              </div>
+              <div class="form-item">
+                <mat-label class="label">valor Hospedaje:</mat-label>
+                <mat-form-field class="field small-field">
+                  <input type="number" matInput formControlName="valor" required />
+                </mat-form-field>
+              </div>
+              <div class="form-item">
+                  <mat-label class="label">valor Lavado:</mat-label>
+                  <mat-form-field class="field small-field">
+                    <input type="number" matInput formControlName="valor" required />
+                  </mat-form-field>
+                </div>
+                <div class="form-item">
+                  <mat-label class="label">valor Parqueo:</mat-label>
+                  <mat-form-field class="field small-field">
+                    <input type="number" matInput formControlName="valor" required />
+                  </mat-form-field>
+                </div>
+              <div class="form-item">
+                <mat-label class="label">Num de factura:</mat-label>
+                <mat-form-field class="field small-field">
+                  <input type="text" matInput formControlName="comentario" />
+                </mat-form-field>
+              </div>
+              <div class="form-item">
+                  <mat-label class="label">Valor de factura:</mat-label>
+                  <mat-form-field class="field small-field">
+                    <input type="text" matInput formControlName="comentario" />
+                  </mat-form-field>
+                </div>
+              <div class="form-item">
+                  <mat-label class="label">Comentario:</mat-label>
+                  <mat-form-field class="field small-field">
+                    <input type="text" matInput formControlName="comentario" />
+                  </mat-form-field>
+                </div>
+                <div class="form-item">
+                  <mat-label class="label">Socio:</mat-label>
+                  <mat-form-field class="field small-field">
+                    <input type="text" matInput formControlName="comentario" />
+                  </mat-form-field>
+                </div>
+              <div class="form-item">
+                <mat-label class="label">Hora salida:</mat-label>
+                <mat-form-field class="field small-field">
+                  <input type="text" matInput formControlName="hora_salida" required />
+                </mat-form-field>
+              </div>
+              
+              <div class="form-item">
+                <mat-form-field class="field small-field">
+                  <mat-label class="label">Fecha salida:</mat-label>
+                  <input matInput [matDatepicker]="picker" formControlName="fechaSalida" required />
                   <mat-hint>MM/DD/YYYY</mat-hint>
                   <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                   <mat-datepicker #picker></mat-datepicker>
-            </mat-form-field>                
-                
-    </div>
-  
-      <div class="boton">
-        <button class="center" (click)="guardarHistorial()" [disabled]="!this.formulario.valid" mat-button>Guardar</button>
-      </div>
-    </form>
-  </div>
-  
+                </mat-form-field>
+              </div>
+              <div class="form-item boton">
+                <button class="center" (click)="guardarHistorial()" [disabled]="!this.formulario.valid" mat-button>Guardar</button>
+              </div>
+            </form>
+          </div>
+          
+</div>

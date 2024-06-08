@@ -40,13 +40,13 @@ export class CreateHistorialComponent {
       const body = this.formulario.value;
       body.fechaSalida = this.fechaFormateada;
       
-      // console.log(body);
-      this.usuarioService.posthistorialHabitacion(body).subscribe((data) => {
-        if (data === 'Registro exitoso') {
-          this.dialogRef.close();
-          this.eliminarHabitacion(body.num_habitacion);
-        }
-      });
+      console.log(body);
+      // this.usuarioService.posthistorialHabitacion(body).subscribe((data) => {
+      //   if (data === 'Registro exitoso') {
+      //     this.dialogRef.close();
+      //     this.eliminarHabitacion(body.num_habitacion);
+      //   }
+      // });
     }
 
     eliminarHabitacion(numHabitacion: number): void {
