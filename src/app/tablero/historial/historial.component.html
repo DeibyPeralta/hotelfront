@@ -1,4 +1,200 @@
-   
+<!-- tabla.component.html -->
+<div class="table-container mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  
+    <ng-container matColumnDef="num_habitacion">
+      <th mat-header-cell *matHeaderCellDef> Habitacion </th>
+      <td mat-cell *matCellDef="let element"> {{element.num_habitacion}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="interno">
+      <th mat-header-cell *matHeaderCellDef> interno </th>
+      <td mat-cell *matCellDef="let element"> {{element.interno}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="hora_llegada">
+      <th mat-header-cell *matHeaderCellDef> Hora llegada </th>
+      <td mat-cell *matCellDef="let element"> {{element.hora_llegada}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="aseo">
+      <th mat-header-cell *matHeaderCellDef> aseo </th>
+      <td mat-cell *matCellDef="let element"> {{element.aseo}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="llamada">
+      <th mat-header-cell *matHeaderCellDef> Llamada </th>
+      <td mat-cell *matCellDef="let element"> {{element.llamada}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="destino">
+      <th mat-header-cell *matHeaderCellDef> Destino </th>
+      <td mat-cell *matCellDef="let element"> {{element.destino}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="comentario">
+      <th mat-header-cell *matHeaderCellDef> Comentario </th>
+      <td mat-cell *matCellDef="let element"> {{element.comentario}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="hora_salida">
+      <th mat-header-cell *matHeaderCellDef> Hora salida </th>
+      <td mat-cell *matCellDef="let element"> {{element.hora_salida}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="fecha">
+      <th mat-header-cell *matHeaderCellDef> Fecha del sistema </th>
+      <td mat-cell *matCellDef="let element"> {{element.fecha}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="placa">
+      <th mat-header-cell *matHeaderCellDef> placa </th>
+      <td mat-cell *matCellDef="let element"> {{element.placa}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="valor_hospedaje">
+      <th mat-header-cell *matHeaderCellDef> valor_hospedaje </th>
+      <td mat-cell *matCellDef="let element"> {{element.valor_hospedaje}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="valor_lavado">
+      <th mat-header-cell *matHeaderCellDef> valor_lavado </th>
+      <td mat-cell *matCellDef="let element"> {{element.valor_lavado}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="valor_parqueo">
+      <th mat-header-cell *matHeaderCellDef> valor_parqueo </th>
+      <td mat-cell *matCellDef="let element"> {{element.valor_parqueo}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="num_factura">
+      <th mat-header-cell *matHeaderCellDef> num_factura </th>
+      <td mat-cell *matCellDef="let element"> {{element.num_factura}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="valor_factura">
+      <th mat-header-cell *matHeaderCellDef> valor_factura </th>
+      <td mat-cell *matCellDef="let element"> {{element.valor_factura}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="socio">
+      <th mat-header-cell *matHeaderCellDef> socio </th>
+      <td mat-cell *matCellDef="let element"> {{element.socio}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="fechasalida">
+      <th mat-header-cell *matHeaderCellDef> fechasalida </th>
+      <td mat-cell *matCellDef="let element"> {{element.fechasalida}} </td>
+    </ng-container>
+  
+    <!-- Definir las columnas a mostrar -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+</div>
+
+
+
+
+
+
+
+  <!-- <table mat-table [dataSource]="dataSource" class="mat-elevation-z8"> -->
+
+    <!-- <ng-container matColumnDef="interno">
+      <th mat-header-cell *matHeaderCellDef>Interno</th>
+      <td mat-cell *matCellDef="let element">{{ element.interno }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="num_habitacion">
+      <th mat-header-cell *matHeaderCellDef>Número de Habitación</th>
+      <td mat-cell *matCellDef="let element">{{ element.num_habitacion }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="hora_llegada">
+      <th mat-header-cell *matHeaderCellDef>Hora de Llegada</th>
+      <td mat-cell *matCellDef="let element">{{ element.hora_llegada }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="aseo">
+      <th mat-header-cell *matHeaderCellDef>Aseo</th>
+      <td mat-cell *matCellDef="let element">{{ element.aseo }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="llamada">
+      <th mat-header-cell *matHeaderCellDef>Llamada</th>
+      <td mat-cell *matCellDef="let element">{{ element.llamada }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="destino">
+      <th mat-header-cell *matHeaderCellDef>Destino</th>
+      <td mat-cell *matCellDef="let element">{{ element.destino }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="comentario">
+      <th mat-header-cell *matHeaderCellDef>Comentario</th>
+      <td mat-cell *matCellDef="let element">{{ element.comentario }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="hora_salida">
+      <th mat-header-cell *matHeaderCellDef>Hora de Salida</th>
+      <td mat-cell *matCellDef="let element">{{ element.hora_salida }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="fecha">
+      <th mat-header-cell *matHeaderCellDef>Fecha</th>
+      <td mat-cell *matCellDef="let element">{{ element.fecha }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="placa">
+      <th mat-header-cell *matHeaderCellDef>Placa</th>
+      <td mat-cell *matCellDef="let element">{{ element.placa }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="valor_hospedaje">
+      <th mat-header-cell *matHeaderCellDef>Valor de Hospedaje</th>
+      <td mat-cell *matCellDef="let element">{{ element.valor_hospedaje }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="valor_lavado">
+      <th mat-header-cell *matHeaderCellDef>Valor de Lavado</th>
+      <td mat-cell *matCellDef="let element">{{ element.valor_lavado }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="valor_parqueo">
+      <th mat-header-cell *matHeaderCellDef>Valor de Parqueo</th>
+      <td mat-cell *matCellDef="let element">{{ element.valor_parqueo }}</td>
+    </ng-container>
+    
+    <ng-container matColumnDef="num_factura">
+      <th mat-header-cell *matHeaderCellDef>Número de Factura</th>
+      <td mat-cell *matCellDef="let element">{{ element.num_factura }}</td>
+    </ng-container>
+    
+    <ng-container matColumnDef="valor_factura">
+      <th mat-header-cell *matHeaderCellDef>Valor de Factura</th>
+      <td mat-cell *matCellDef="let element">{{ element.valor_factura }}</td>
+    </ng-container>
+    
+    <ng-container matColumnDef="socio">
+      <th mat-header-cell *matHeaderCellDef>socio</th>
+      <td mat-cell *matCellDef="let element">{{ element.num_factura }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="fechasalida">
+      <th mat-header-cell *matHeaderCellDef>fecha de salida</th>
+      <td mat-cell *matCellDef="let element">{{ element.valor_factura }}</td>
+    </ng-container> -->
+
+    
+
+<!-- <mat-paginator [pageSizeOptions]="[10, 25, 50, 100]" showFirstLastButtons></mat-paginator> -->
+<!-- </div>
+<tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr> -->
+
+
+<!--    
 <div class="container">
 
   <hr>
@@ -29,4 +225,4 @@
   
 
 
-  
+   -->

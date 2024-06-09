@@ -1,6 +1,6 @@
 <div class="scroll-container">
       <div class="container">
-            <h2 class="center">Crear Historial</h2>
+            <h2 class="center">Salida de bus del hotel</h2>
             <form [formGroup]="formulario" class="form-grid">
               <div class="form-item">
                 <mat-label class="label">Habitación:</mat-label>
@@ -23,13 +23,13 @@
               <div class="form-item">
                 <mat-label class="label">Interno:</mat-label>
                 <mat-form-field class="field small-field">
-                  <input type="text" matInput formControlName="interno" readonly />
+                  <input type="number" matInput formControlName="interno" readonly />
                 </mat-form-field>
               </div>
               <div class="form-item">
                 <mat-label class="label">Placa:</mat-label>
                 <mat-form-field class="field small-field">
-                  <input type="text" matInput formControlName="placa" readonly />
+                  <input type="text" matInput formControlName="placa"/>
                 </mat-form-field>
               </div>
               <div class="form-item">
@@ -41,31 +41,31 @@
               <div class="form-item">
                 <mat-label class="label">valor Hospedaje:</mat-label>
                 <mat-form-field class="field small-field">
-                  <input type="number" matInput formControlName="valor" required />
+                  <input type="number" matInput formControlName="valor_hospedaje" required />
                 </mat-form-field>
               </div>
               <div class="form-item">
                   <mat-label class="label">valor Lavado:</mat-label>
                   <mat-form-field class="field small-field">
-                    <input type="number" matInput formControlName="valor" required />
+                    <input type="number" matInput formControlName="valor_lavado" required />
                   </mat-form-field>
                 </div>
                 <div class="form-item">
                   <mat-label class="label">valor Parqueo:</mat-label>
                   <mat-form-field class="field small-field">
-                    <input type="number" matInput formControlName="valor" required />
+                    <input type="number" matInput formControlName="valor_parqueo" required />
                   </mat-form-field>
                 </div>
               <div class="form-item">
                 <mat-label class="label">Num de factura:</mat-label>
                 <mat-form-field class="field small-field">
-                  <input type="text" matInput formControlName="comentario" />
+                  <input type="text" matInput formControlName="num_factura" />
                 </mat-form-field>
               </div>
               <div class="form-item">
                   <mat-label class="label">Valor de factura:</mat-label>
                   <mat-form-field class="field small-field">
-                    <input type="text" matInput formControlName="comentario" />
+                    <input type="text" matInput formControlName="valor_factura" />
                   </mat-form-field>
                 </div>
               <div class="form-item">
@@ -77,7 +77,7 @@
                 <div class="form-item">
                   <mat-label class="label">Socio:</mat-label>
                   <mat-form-field class="field small-field">
-                    <input type="text" matInput formControlName="comentario" />
+                    <input type="text" matInput formControlName="socio" />
                   </mat-form-field>
                 </div>
               <div class="form-item">
@@ -96,10 +96,9 @@
                   <mat-datepicker #picker></mat-datepicker>
                 </mat-form-field>
               </div>
-              <div class="form-item boton">
-                <button class="center" (click)="guardarHistorial()" [disabled]="!this.formulario.valid" mat-button>Guardar</button>
-              </div>
             </form>
-          </div>
-          
+            <div class="center">
+              <button class="center" mat-raised-button color="primary" (click)="guardarHistorial()" [disabled]="!this.formulario.valid" mat-button>Guardar</button>
+            </div>
+      </div>     
 </div>

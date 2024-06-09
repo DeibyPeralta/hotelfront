@@ -22,15 +22,21 @@ export class CreateHistorialComponent {
 
        this.formulario = this.fb.group({
          num_habitacion: [this.data.num_habitacion, Validators.required],
-         interno: [this.data.interno, Validators.required],
          hora_llegada: [this.data.hora_llegada, Validators.required],
-         aseo: [this.data.aseo, Validators.required],
          llamada: [this.data.llamada, Validators.required],
-         destino: [this.data.destino, Validators.required],
-         valor: ['', Validators.required],
-         comentario: [''],
-         hora_salida: ['', Validators.required],
+         interno: [this.data.interno, Validators.required],
+         placa: ['', Validators.required],
+         aseo: [this.data.aseo, Validators.required],
+         valor_hospedaje: ['', Validators.required],
+         valor_lavado: ['', Validators.required],
+         valor_parqueo: ['', Validators.required], 
+         num_factura: ['', Validators.required], 
+         valor_factura: ['', Validators.required], 
+         comentario: ['', Validators.required],
+         socio: ['', Validators.required],
          fechaSalida: ['', Validators.required],
+         destino: [this.data.destino, Validators.required],
+         hora_salida: ['', Validators.required]
        });
     }
 
@@ -40,13 +46,12 @@ export class CreateHistorialComponent {
       const body = this.formulario.value;
       body.fechaSalida = this.fechaFormateada;
       
-      console.log(body);
-      // this.usuarioService.posthistorialHabitacion(body).subscribe((data) => {
-      //   if (data === 'Registro exitoso') {
-      //     this.dialogRef.close();
-      //     this.eliminarHabitacion(body.num_habitacion);
-      //   }
-      // });
+      this.usuarioService.posthistorialHabitacion(body).subscribe((data) => {
+        if (data === 'Registro exitoso') {
+          this.dialogRef.close();
+          this.eliminarHabitacion(body.num_habitacion);
+        }
+      });
     }
 
     eliminarHabitacion(numHabitacion: number): void {
