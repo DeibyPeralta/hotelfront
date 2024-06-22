@@ -27,7 +27,7 @@ import { DatePipe } from '@angular/common';
 import { AgregarClientesComponent } from './agregar-clientes/agregar-clientes.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTabsModule } from '@angular/material/tabs';
-
+import { MatTooltipModule } from '@angular/material/tooltip';
 @NgModule({
     declarations: [  
     EditarTableroComponent, 
@@ -54,7 +54,8 @@ import { MatTabsModule } from '@angular/material/tabs';
       MatPaginatorModule,
       MatGridListModule,
       MatMenuModule,
-      MatTabsModule
+      MatTabsModule,
+      MatTooltipModule
     ],
     providers: [
       DatePipe, 

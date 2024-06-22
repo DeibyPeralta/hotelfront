@@ -1,12 +1,29 @@
-.container {
-  margin: 0 30px; 
-  margin-bottom: 20px; 
+.fullTable{
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  //background-color: var(--white-color);
+    table {
+      width: 100%;
+    }
 }
 
-.mat-elevation-z8 {
-  margin-top: 30px; 
+.center-container {
+  border: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.agregar {
-  margin-top: 30px; 
+.search {
+  padding-top: 15px;
+  width: 100%; /* Ajusta esto según tu necesidad */
+  max-width: 600px; /* O el ancho que prefieras */
+}
+
+.full-width {
+  width: 100%;
+}
+.edit-button {
+  cursor: pointer;
 }
