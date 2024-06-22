@@ -10,7 +10,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { ReactiveFormsModule } from '@angular/forms'; 
+import { ReactiveFormsModule } from '@angular/forms';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { HabitacionesComponent } from './usuarios/habitaciones/habitaciones.component';
 import { CommonModule } from '@angular/common';
@@ -33,7 +33,7 @@ import { CreateUserComponent } from './usuarios/create-user/create-user.componen
     EditarHabitacionComponent,
     CreateUserComponent,
   ],
-  imports: [    
+  imports: [
     MatSelectModule,
     ReactiveFormsModule,
     AppRoutingModule,
@@ -48,7 +48,7 @@ import { CreateUserComponent } from './usuarios/create-user/create-user.componen
     CommonModule,
     MatToolbarModule,
     DashboardTableroRoutingModule,
-    MatButtonModule, 
+    MatButtonModule,
     MatIconModule,
     MatTableModule,
     MatFormFieldModule,
@@ -58,11 +58,11 @@ import { CreateUserComponent } from './usuarios/create-user/create-user.componen
     MatDialogModule,
     MatNativeDateModule,
   ],
-  exports:[
+  exports: [
     CommonModule,
     MatToolbarModule,
     DashboardTableroRoutingModule,
-    MatButtonModule, 
+    MatButtonModule,
     MatIconModule,
     MatTableModule,
     MatFormFieldModule,

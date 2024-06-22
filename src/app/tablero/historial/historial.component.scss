@@ -1,21 +1,28 @@
-table {
+.fullTable{
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  //background-color: var(--white-color);
+    table {
+      width: 100%;
+    }
+}
+
+.center-container {
+  border: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search {
+  padding-top: 15px;
+  width: 100%; /* Ajusta esto según tu necesidad */
+  max-width: 600px; /* O el ancho que prefieras */
+}
+
+.full-width {
   width: 100%;
 }
-// .container {
-//     margin: 0 30px; 
-//     margin-bottom: 20px; 
-//     display: flex;
-//     flex-direction: column;
-//     align-items: center;
-//     justify-content: center;
-//   }
-  
-// .mat-elevation-z8 {
-//     margin-top: 30px; 
-//   }
 
-// .agregar {
-//     margin-top: 30px; 
-//   }
-  
     

@@ -15,8 +15,8 @@ import { EditarTableroComponent } from '../editar-tablero/editar-tablero.compone
 })
 export class VistaTableroComponent {
 
-  displayedColumns: string[] = ['num_habitacion', 'interno', 'hora_llegada', 'aseo', 'llamada', 'destino', 'fechallegada', 'acciones'];
-  dataSource!: MatTableDataSource<any>;
+  displayedColumns: string[] = ['num_habitacion', 'interno', 'hora_llegada', 'aseo', 'llamada', 'destino', 'acciones'];
+  dataSource = new MatTableDataSource<any>;
 
   constructor(private tableroService: UsuariosService,
               private dialog: MatDialog,
@@ -31,11 +31,12 @@ export class VistaTableroComponent {
   cargarTabla() {
     this.tableroService.getDatosDeTablero().subscribe(data => {
       console.log(data);
-      this.dataSource = new MatTableDataSource(data);
+      // this.dataSource = new MatTableDataSource(data);
+      this.dataSource.data = data;
     });
   }
 
-  shouldShowActions(element: any): boolean {
+  shouldShowAddButton(element: any): boolean {
     return !element.interno && !element.hora_llegada && !element.aseo && !element.llamada && !element.destino;
   }
 

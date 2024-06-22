@@ -21,11 +21,7 @@ export class HistorialComponent {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   displayedColumns: string[] = ['interno', 'num_habitacion', 'hora_llegada', 'aseo', 'llamada', 'destino', 'comentario', 'hora_salida', 'fecha', 'placa', 'valor_hospedaje', 'valor_lavado', 'valor_parqueo', 'num_factura', 'valor_factura', 'socio', 'fechasalida'];
   dataSource = new MatTableDataSource<any>;
-  // fechaFiltro = new FormControl();
-  // fechaFormateada: any;
   datosTabla: any;
-  // dataSource = new MatTableDataSource<any>();
-  // displayedColumns: string[] = ['nombre', 'edad']; 
 
   constructor(private tableroService: UsuariosService,
     private datePipe: DatePipe,
@@ -34,70 +30,24 @@ export class HistorialComponent {
       this.cargarTabla();
     }
 
-    // onFechaSeleccionada(event: MatDatepickerInputEvent<Date>) {
-    //   const fechaSeleccionada = event.value;
-    //   this.fechaFormateada = this.datePipe.transform(fechaSeleccionada, 'dd/MM/yyyy');
-    // }
-
-
     ngOnInit(): void { 
-      // this.dataSource.filterPredicate = (data: any, filter: string) => {
-      //   const formattedDate = this.datePipe.transform(data.fecha, 'dd/MM/yyyy');
-      //   return formattedDate === filter;
-      // };
-   
-      // this.dataSource.paginator = this.paginator;
-      // this.dataSource.sort = this.sort;
-      // this.dataSource.filter = '';
     }
 
-
-    // aplicarFiltro() {
-    //   // console.log(this.fechaFormateada);
-    
-    //   // if (!this.fechaFormateada) {
-    //   //   this.cargarTabla();
-    //   //   return;
-    //   // }
-    
-    //   // const fechaSeleccionada = new Date(this.fechaFormateada);
-    
-    //   // if (!isNaN(fechaSeleccionada.getTime())) {
-    //   //   const datosFiltrados = this.datosTabla.filter((dato: any) => {
-    //   //     const datoFecha = new Date(dato.fecha);
-    //   //     return datoFecha.toDateString() === fechaSeleccionada.toDateString();
-    //   //   });
-    
-    //   //   this.dataSource = new MatTableDataSource(datosFiltrados);
-    //   //   this.dataSource.paginator = this.paginator;
-    //   //   this.dataSource.sort = this.sort;
-    //   // } else {
-    //   //   console.error('Fecha no válida');
-    //   // }
-    // }
-    
     cargarTabla() {
       this.tableroService.getHistorial().subscribe(data => {
 
-        console.log(data);
-        // this.dataSource = ELEMENT_DATA;tion', 'name', 'weight', 'symbol'];
+        // console.log(data);
         this.dataSource.data = data;
-        console.log(this.dataSource.data)
-        // data.sort((a: { id: number }, b: { id: number }) => b.id - a.id);
-        // this.dataSource = new MatTableDataSource<any>(data);
-        // this.dataSource.paginator = this.paginator;
-        // console.log(this.dataSource)
-
-        // this.datosTabla = data;
-        // this.cargarDatos(this.dataSource);
+        // console.log(this.dataSource.data)
       });
     }
 
-    // cargarDatos(data: any){
-    //   this.dataSource = new MatTableDataSource(this.datosTabla);
-    //   this.dataSource.paginator = this.paginator;
-    //   this.dataSource.sort = this.sort;
-    // }
-
-
+    applyFilter(event: Event) {
+      const filterValue = (event.target as HTMLInputElement).value;
+      this.dataSource.filter = filterValue.trim().toLowerCase();
+  
+      if (this.dataSource.paginator) {
+        this.dataSource.paginator.firstPage();
+      }
+    }
 }

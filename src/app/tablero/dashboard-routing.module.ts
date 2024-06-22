@@ -6,20 +6,23 @@ import { CreateTableroComponent } from './create-tablero/create-tablero.componen
 import { EditarTableroComponent } from './editar-tablero/editar-tablero.component';
 import { HabitacionesComponent } from '../usuarios/habitaciones/habitaciones.component';
 import { HistorialComponent } from './historial/historial.component';
-import { NavbarComponent } from './navbar/navbar.component';
 import { AgregarClientesComponent } from './agregar-clientes/agregar-clientes.component';
+import { VistaSociosComponent } from '../socios/vista-socios/vista-socios.component';
 
 const routes: Routes = [
-    { path: '', component: DashboardTableroComponent, children: [
-        {path: '', component: VistaTableroComponent },
-        {path: 'vista', component: VistaTableroComponent },
-        {path: 'editar', component: EditarTableroComponent },
-        {path: 'agregar', component: AgregarClientesComponent },
-        {path: 'habitaciones', component: HabitacionesComponent },
-        {path: 'historial', component: HistorialComponent },
-        {path: 'registrar/:index', component: CreateTableroComponent },
-        { path: '**', redirectTo: 'vista', pathMatch: 'full'  }
-    ]}
+    {
+        path: '', component: DashboardTableroComponent, children: [
+            { path: '', component: VistaTableroComponent },
+            { path: 'vista', component: VistaTableroComponent },
+            { path: 'editar', component: EditarTableroComponent },
+            { path: 'agregar', component: AgregarClientesComponent },
+            { path: 'habitaciones', component: HabitacionesComponent },
+            { path: 'historial', component: HistorialComponent },
+            { path: 'registrar/:index', component: CreateTableroComponent },
+            { path: 'socios', loadChildren: () => import('../socios/socios.module').then(x => x.SociosModule) },
+            { path: '**', redirectTo: 'vista', pathMatch: 'full' }
+        ]
+    }
 ]
 
 @NgModule({
@@ -27,4 +30,4 @@ const routes: Routes = [
     exports: [RouterModule]
 })
 
-export class DashboardTableroRoutingModule {}
+export class DashboardTableroRoutingModule { }

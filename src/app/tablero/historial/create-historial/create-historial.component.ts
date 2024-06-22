@@ -32,7 +32,7 @@ export class CreateHistorialComponent {
          valor_parqueo: ['', Validators.required], 
          num_factura: ['', Validators.required], 
          valor_factura: ['', Validators.required], 
-         comentario: ['', Validators.required],
+         comentario: [''],
          socio: ['', Validators.required],
          fechaSalida: ['', Validators.required],
          destino: [this.data.destino, Validators.required],

@@ -28,8 +28,6 @@ export class UsuariosService {
   }
 
   getDatosDeTablero(): Observable<any> {
-    console.log(this.baseUrl);
-    console.log('deiby');
     return this.http.get(`${this.baseUrl}/tablero/vista-tablero`);
   }
 
@@ -63,6 +61,14 @@ export class UsuariosService {
 
   registro(body: any): Observable<any> {
     return this.http.post<any>(`${this.baseUrl}/usuarios/registro`, body);
+  }
+
+  updateSocio(body: any): Observable<any> {
+    return this.http.post<any>(`${this.baseUrl}/socios/update_socios`, body);
+  }
+
+  getSocios(): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/socios/getsocios`);
   }
   
 }

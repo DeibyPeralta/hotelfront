@@ -26,6 +26,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { DatePipe } from '@angular/common';
 import { AgregarClientesComponent } from './agregar-clientes/agregar-clientes.component';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
     declarations: [  
@@ -52,7 +53,8 @@ import { MatMenuModule } from '@angular/material/menu';
       MatDialogModule,
       MatPaginatorModule,
       MatGridListModule,
-      MatMenuModule
+      MatMenuModule,
+      MatTabsModule
     ],
     providers: [
       DatePipe, 
