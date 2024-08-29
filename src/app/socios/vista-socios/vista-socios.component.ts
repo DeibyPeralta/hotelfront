@@ -1,9 +1,11 @@
 import { Component, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { UsuariosService } from 'src/app/tablero/services/usuarios.service';
 import * as XLSX from 'xlsx';
+import { EditSociosComponent } from '../edit-socios/edit-socios.component';
 @Component({
   selector: 'app-vista-socios',
   templateUrl: './vista-socios.component.html',
@@ -16,7 +18,8 @@ export class VistaSociosComponent {
   dataSource = new MatTableDataSource<any>;
   file: File | undefined;
 
-  constructor(private sociosService: UsuariosService) {
+  constructor(private sociosService: UsuariosService,
+              public dialog: MatDialog ) {
     this.cargarTabla();
   }
 
@@ -40,7 +43,22 @@ export class VistaSociosComponent {
   }
 
   editarFila(element: any) {
-    console.log(element)
+
+
+    const dialogRef = this.dialog.open(EditSociosComponent, {
+      width: '350px',
+      height: 'auto',
+      data: { ...element }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        console.log('El resultado del dialog es:', result);
+      }
+      this.sociosService.update_Socio(result).subscribe( data => {
+        console.log(data);
+      })
+    });
   }
 
   onFileChange(event: any) {

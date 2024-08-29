@@ -1,4 +1,16 @@
 .example-spacer {
     flex: 1 1 auto;
   }
+  .toolbar {
+    display: flex;
+    align-items: center;
+  }
+  .toolbar-logo {
+    width: 100px; /* Ajusta el ancho de la imagen según tus necesidades */
+    height: auto; /* Mantiene la proporción de la imagen */
+    margin: 0 8px 0 0; /* Reduce el margen a la derecha de la imagen */
+  }
   
+  .example-button {
+    margin: 0 8px; /* Ajusta el margen de los botones según sea necesario */
+  }

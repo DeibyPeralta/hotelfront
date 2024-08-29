@@ -69,6 +69,11 @@ export class UsuariosService {
     return this.http.post<any>(`${this.baseUrl}/socios/updatesocios`, formData);
   }
 
+  update_Socio(dato: any): Observable<any> {
+    
+    return this.http.post<any>(`${this.baseUrl}/socios/update-socios`, dato);
+  }
+
   getSocios(): Observable<any> {
     return this.http.get<any>(`${this.baseUrl}/socios/getsocios`);
   }

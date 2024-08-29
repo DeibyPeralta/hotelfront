@@ -1,0 +1,36 @@
+.scroll-container {
+    max-height: 400px; 
+    overflow-y: auto; 
+}
+
+.container {
+    overflow: hidden; 
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.form-field {
+    margin-bottom: 16px; 
+    display: flex;
+    flex-direction: column;
+}
+
+.field {
+    width: 100%;
+}
+.center{
+    text-align: flex;
+    justify-content: space-between; 
+    margin-top: 16px;
+}
+/* Estilos para los botones */
+button {
+    background-color: initial;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Cambiar a azul cuando se pase el mouse */
+  button:hover {
+    background-color: blue;
+    color: white;
+  }

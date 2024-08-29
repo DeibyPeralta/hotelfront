@@ -17,7 +17,7 @@ export class EditarHabitacionComponent {
                  private usuarioService: UsuariosService,
                  @Inject(MAT_DIALOG_DATA) public data: any, 
                  private fb: FormBuilder  ) {
-                    console.log(this.data);
+                    // console.log(this.data);
 
                     this.formulario = this.fb.group({
                       estado: [this.data.estado, Validators.required],

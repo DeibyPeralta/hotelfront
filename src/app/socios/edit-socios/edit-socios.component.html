@@ -1,0 +1,41 @@
+<div class="container">
+    
+    <h2 class="center" mat-dialog-title>Editar Información</h2>
+    <form [formGroup]="editForm" class="scroll-container">
+        <div class="form-field">
+            <mat-label class="label">Placa</mat-label>
+            <mat-form-field class="field">
+                <input type="text" matInput formControlName="placa" readonly/>
+            </mat-form-field>
+        </div>
+
+        <div class="form-field">
+            <mat-label class="label">Código Interno</mat-label>
+            <mat-form-field class="field">
+                <input type="text" matInput formControlName="cod_interno" readonly/>
+            </mat-form-field>
+        </div>
+        <div class="form-field">
+            <mat-label class="label">Código de Socio</mat-label>
+            <mat-form-field class="field">
+                <input type="text" matInput formControlName="cod_socio" />
+            </mat-form-field>
+        </div>
+
+        <div class="form-field">
+            <mat-label class="label">Nombre</mat-label>
+            <mat-form-field class="field">
+                <input type="text" matInput formControlName="nombre" />
+            </mat-form-field>
+        </div>
+
+        <div class="form-field boton">
+            <div class="boton">
+                <button class="left" mat-button (click)="onCancel()">Cancelar</button>
+                <button class="right" mat-button (click)="onSave()">Guardar</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+

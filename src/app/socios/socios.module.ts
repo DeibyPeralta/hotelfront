@@ -7,9 +7,13 @@ import { MatSortModule } from '@angular/material/sort';
 import { sociosRoutingModule } from './socios-routing.module';
 import { MatFormFieldModule } from '@angular/material/form-field'; 
 import { MatInputModule } from '@angular/material/input';
+import { EditSociosComponent } from './edit-socios/edit-socios.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
-  declarations: [VistaSociosComponent],
+  declarations: [VistaSociosComponent, EditSociosComponent],
   imports: [
     CommonModule,
     MatIconModule,
@@ -17,7 +21,12 @@ import { MatInputModule } from '@angular/material/input';
     MatSortModule,
     MatFormFieldModule,
     MatInputModule,
-    sociosRoutingModule
-  ]
+    sociosRoutingModule,
+    MatFormFieldModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    MatDialogModule, 
+    MatButtonModule 
+  ],
 })
 export class SociosModule { }
