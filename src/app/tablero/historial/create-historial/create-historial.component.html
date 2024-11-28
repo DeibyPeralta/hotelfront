@@ -4,9 +4,12 @@
             <form [formGroup]="formulario" class="form-grid">
               <div class="form-item">
                 <mat-label class="label">Habitación:</mat-label>
-                <mat-form-field class="field small-field">
-                  <input type="number" matInput formControlName="num_habitacion" readonly />
-                </mat-form-field>
+                <div class="field-checkbox">
+                  <mat-checkbox formControlName="efectivo_valor_hospedaje"></mat-checkbox>
+                  <mat-form-field class="field small-field">
+                    <input type="number" matInput formControlName="num_habitacion" readonly />
+                  </mat-form-field>
+                </div>
               </div>
               <div class="form-item">
                 <mat-label class="label">hora llegada:</mat-label>
@@ -34,6 +37,7 @@
               </div>
               <div class="form-item">
                 <mat-label class="label">Aseo:</mat-label>
+                <mat-checkbox formControlName="efectivo_valor_ropa"></mat-checkbox>
                 <mat-form-field class="field small-field">
                   <input type="text" matInput formControlName="aseo" readonly />
                 </mat-form-field>
@@ -84,6 +88,13 @@
                 <mat-label class="label">Hora salida:</mat-label>
                 <mat-form-field class="field small-field">
                   <input type="text" matInput formControlName="hora_salida" required />
+                </mat-form-field>
+              </div>
+              <div class="form-item">
+                <mat-label class="label">Ropa:</mat-label>
+                <mat-checkbox formControlName="efectivo_valor_ropa"></mat-checkbox>
+                <mat-form-field class="field small-field">
+                  <input type="text" matInput formControlName="ropa" required />
                 </mat-form-field>
               </div>
               

@@ -36,23 +36,28 @@ export class CreateHistorialComponent {
          socio: ['', Validators.required],
          fechaSalida: ['', Validators.required],
          destino: [this.data.destino, Validators.required],
-         hora_salida: ['', Validators.required]
+         hora_salida: ['', Validators.required],
+         ropa: ['', Validators.required]
        });
     }
 
     guardarHistorial(){
-      this.formatFecha();
-      
-      const body = this.formulario.value;
-      body.fechaSalida = this.fechaFormateada;
-      
-      this.usuarioService.posthistorialHabitacion(body).subscribe((data) => {
-        if (data === 'Registro exitoso') {
-          this.dialogRef.close();
-          this.eliminarHabitacion(body.num_habitacion);
-        }
-      });
+      if (this.formulario.valid) {
+        
+        const formularioData = this.formulario.getRawValue(); 
+        console.log(formularioData);
+        
+        this.usuarioService.posthistorialHabitacion(formularioData).subscribe((data) => {
+              if (data === 'Registro exitoso') {
+                this.dialogRef.close();
+                this.eliminarHabitacion(formularioData.num_habitacion);
+              }
+            });
+      } else {
+        console.log('Formulario inválido');
+      }
     }
+
 
     eliminarHabitacion(numHabitacion: number): void {
       this.usuarioService.deleteHabitaciones(numHabitacion).subscribe((data) => {
@@ -60,16 +65,4 @@ export class CreateHistorialComponent {
       });
     }
 
-    formatFecha(){
-      const formData = this.formulario.value;
-      const fechaSalida: Date = formData.fechaSalida;
-
-      const dia = fechaSalida.getDate(); 
-      const mes = fechaSalida.getMonth() + 1; 
-      const anio = fechaSalida.getFullYear(); 
-
-      this.fechaFormateada = `${dia}/${mes}/${anio}`;
-
-      // console.log('Fecha formateada:', this.fechaFormateada);
-    }
 }

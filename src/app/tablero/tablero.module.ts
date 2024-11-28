@@ -28,6 +28,7 @@ import { AgregarClientesComponent } from './agregar-clientes/agregar-clientes.co
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 @NgModule({
     declarations: [  
     EditarTableroComponent, 
@@ -55,7 +56,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
       MatGridListModule,
       MatMenuModule,
       MatTabsModule,
-      MatTooltipModule
+      MatTooltipModule,
+      MatCheckboxModule
     ],
     providers: [
       DatePipe, 

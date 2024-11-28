@@ -65,6 +65,7 @@ export class HistorialComponent {
 
   cargarTabla() {
     this.tableroService.getHistorial().subscribe(data => {
+      console.log(data)
       this.dataSource.data = data;
     });
   }
