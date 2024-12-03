@@ -37,7 +37,14 @@ export class CreateHistorialComponent {
          fechaSalida: ['', Validators.required],
          destino: [this.data.destino, Validators.required],
          hora_salida: ['', Validators.required],
-         ropa: ['', Validators.required]
+         ropa: ['', Validators.required],
+         efectivo_valor_hospedaje: [''],
+         efectivo_valor_lavado: [''],
+         efectivo_valor_porqueo: [''],
+         efectivo_valor_factura: [''],
+         efectivo_valor_ropa: [''],
+         efectivo_tienda: [''],
+         efectivo_aseo: [''],
        });
     }
 

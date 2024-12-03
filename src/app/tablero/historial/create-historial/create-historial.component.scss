@@ -9,6 +9,12 @@
   align-items: center;
 }
 
+.field-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Espaciado entre el input y el checkbox */
+}
+
 .form-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr); /* Tres columnas de igual tamaño */
