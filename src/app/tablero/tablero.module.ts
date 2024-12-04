@@ -29,6 +29,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 @NgModule({
     declarations: [  
     EditarTableroComponent, 
@@ -57,7 +58,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
       MatMenuModule,
       MatTabsModule,
       MatTooltipModule,
-      MatCheckboxModule
+      MatCheckboxModule,
+      MatSnackBarModule
     ],
     providers: [
       DatePipe, 

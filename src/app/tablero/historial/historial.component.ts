@@ -15,7 +15,7 @@ export class HistorialComponent {
 
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-  displayedColumns: string[] = ['interno', 'num_habitacion', 'hora_llegada', 'aseo', 'llamada', 'destino', 'comentario', 'hora_salida', 'placa', 'valor_hospedaje', 'valor_lavado', 'valor_parqueo', 'num_factura', 'valor_factura', 'socio', 'fechasalida'];
+  displayedColumns: string[] = ['interno', 'num_habitacion', 'hora_llegada', 'aseo', 'llamada', 'destino', 'comentario', 'hora_salida', 'placa', 'valor_hospedaje', 'valor_lavado', 'valor_parqueo', 'num_factura', 'valor_factura', 'Tienda', 'socio', 'fechasalida'];
   dataSource = new MatTableDataSource<any>();
 
   startDate: Date | null = null;

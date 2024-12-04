@@ -28,7 +28,7 @@
   
     <ng-container matColumnDef="aseo">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Aseo </th>
-      <td mat-cell *matCellDef="let element"> {{element.aseo}} </td>
+      <td mat-cell *matCellDef="let element"  [matTooltip]="element.efectivo_aseo === true ? 'Pago en efectivo' : 'Firmo'"> {{element.aseo}} </td>
     </ng-container>
   
     <ng-container matColumnDef="llamada">
@@ -51,11 +51,6 @@
       <td mat-cell *matCellDef="let element"> {{element.hora_salida}} </td>
     </ng-container>
   
-    <!-- <ng-container matColumnDef="fecha">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha del Sistema </th>
-      <td mat-cell *matCellDef="let element"> {{element.fecha}} </td>
-    </ng-container> -->
-  
     <ng-container matColumnDef="placa">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Placa </th>
       <td mat-cell *matCellDef="let element"> {{element.placa}} </td>
@@ -63,17 +58,17 @@
   
     <ng-container matColumnDef="valor_hospedaje">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Valor Hospedaje </th>
-      <td mat-cell *matCellDef="let element" [matTooltip]="element.efectivo === '0' ? 'Pago en efectivo' : 'Firmo dormida'"> {{element.valor_hospedaje | currency:' ':'symbol':'1.0-0' }} </td>
+      <td mat-cell *matCellDef="let element" [matTooltip]="element.efectivo_valor_hospedaje === true ? 'Pago en efectivo' : 'Firmo'"> {{element.valor_hospedaje | currency:' ':'symbol':'1.0-0' }} </td>
     </ng-container>
   
     <ng-container matColumnDef="valor_lavado">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Valor Lavado </th>
-      <td mat-cell *matCellDef="let element"> {{element.valor_lavado | currency:' ':'symbol':'1.0-0' }} </td>
+      <td mat-cell *matCellDef="let element" [matTooltip]="element.efectivo_valor_lavado === true ? 'Pago en efectivo' : 'Firmo'"> {{element.valor_lavado | currency:' ':'symbol':'1.0-0' }} </td>
     </ng-container>
   
     <ng-container matColumnDef="valor_parqueo">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Valor Parqueo </th>
-      <td mat-cell *matCellDef="let element"> {{element.valor_parqueo | currency:' ':'symbol':'1.0-0' }} </td>
+      <td mat-cell *matCellDef="let element" [matTooltip]="element.efectivo_valor_parqueo === true ? 'Pago en efectivo' : 'Firmo'"> {{element.valor_parqueo | currency:' ':'symbol':'1.0-0' }} </td>
     </ng-container>
   
     <ng-container matColumnDef="num_factura">
@@ -83,23 +78,23 @@
   
     <ng-container matColumnDef="valor_factura">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Valor Factura </th>
-      <td mat-cell *matCellDef="let element"> {{element.valor_factura | currency:' ':'symbol':'1.0-0' }} </td>
+      <td mat-cell *matCellDef="let element" [matTooltip]="element.efectivo_valor_factura === true ? 'Pago en efectivo' : 'Firmo'"> {{element.valor_factura | currency:' ':'symbol':'1.0-0' }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Tienda">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Tienda </th>
+      <td mat-cell *matCellDef="let element" [matTooltip]="element.efectivo_tienda === true ? 'Pago en efectivo' : 'Firmo'"> {{element.valor_tienda | currency:' ':'symbol':'1.0-0' }} </td>
     </ng-container>
   
     <ng-container matColumnDef="socio">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Socio </th>
-      <td mat-cell *matCellDef="let element" [matTooltip]="element.nombre"> {{element.socio}} </td>
+      <td mat-cell *matCellDef="let element" [matTooltip]="element.nombre"> {{element.nombre}} </td>
     </ng-container>
     
     <ng-container matColumnDef="fechasalida">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha Salida </th>
-      <td mat-cell *matCellDef="let element"> {{element.fechasalida}} </td>
+      <td mat-cell *matCellDef="let element">  {{ element.fechasalida | date: 'dd/MM/yyyy' }} </td>
     </ng-container>
-    
-      <!-- <ng-container matColumnDef="adicional">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> adicional </th>
-        <td mat-cell *matCellDef="let element"> {{element.adicional}} </td>
-      </ng-container> -->
   
     <!-- Definir las columnas a mostrar -->
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

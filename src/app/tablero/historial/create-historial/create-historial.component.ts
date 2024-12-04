@@ -2,7 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { UsuariosService } from '../../services/usuarios.service';
-
+import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-create-historial',
   templateUrl: './create-historial.component.html',
@@ -14,7 +14,9 @@ export class CreateHistorialComponent {
   formulario: FormGroup;
   fechaFormateada: any;
 
-  constructor( public dialogRef: MatDialogRef<CreateHistorialComponent>,
+  constructor( 
+    private snackBar: MatSnackBar,
+    public dialogRef: MatDialogRef<CreateHistorialComponent>,
     private usuarioService: UsuariosService,
     @Inject(MAT_DIALOG_DATA) public data: any, 
     private fb: FormBuilder  ) {
@@ -45,26 +47,36 @@ export class CreateHistorialComponent {
          efectivo_valor_ropa: [''],
          efectivo_tienda: [''],
          efectivo_aseo: [''],
+         tienda: [''],
        });
     }
 
-    guardarHistorial(){
+    guardarHistorial() {
       if (this.formulario.valid) {
-        
-        const formularioData = this.formulario.getRawValue(); 
-        console.log(formularioData);
-        
-        this.usuarioService.posthistorialHabitacion(formularioData).subscribe((data) => {
-              if (data === 'Registro exitoso') {
-                this.dialogRef.close();
-                this.eliminarHabitacion(formularioData.num_habitacion);
-              }
-            });
+        const formularioData = this.formulario.getRawValue();
+    
+        this.usuarioService.posthistorialHabitacion(formularioData).subscribe({
+          next: (data) => {
+            if (data === 'Registro exitoso') {
+              this.dialogRef.close();
+              this.eliminarHabitacion(formularioData.num_habitacion);
+            }
+          },
+          error: () => {
+            this.mostrarError('Socio no encontrado o inválido. Por favor, inténtalo de nuevo.');
+          }
+        });
       } else {
         console.log('Formulario inválido');
       }
     }
-
+    
+    mostrarError(mensaje: string) {
+      this.snackBar.open(mensaje, 'Cerrar', {
+        duration: 5000,
+        panelClass: ['snackbar-error'],
+      });
+    }
 
     eliminarHabitacion(numHabitacion: number): void {
       this.usuarioService.deleteHabitaciones(numHabitacion).subscribe((data) => {
