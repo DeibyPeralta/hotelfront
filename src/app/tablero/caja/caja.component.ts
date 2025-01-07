@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { UsuariosService } from '../services/usuarios.service';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { BaseComponent } from 'src/app/base/base.component';
 
 @Component({
   selector: 'app-caja',
@@ -8,11 +11,21 @@ import { UsuariosService } from '../services/usuarios.service';
 })
 export class CajaComponent {
   baseValue!: number;
+  form: FormGroup;
 
-  constructor(private usuarioService: UsuariosService) { }
+  constructor( private fb: FormBuilder,
+    private dialog: MatDialog,
+    private usuarioService: UsuariosService) {
+    this.form = this.fb.group({
+      base: [''], 
+      efectivoDelDia: [''], 
+      total: [ ''] 
+    });
+   }
 
   ngOnInit(): void {
     this.loadBaseValue();
+    this.calculateTotal();
   }
 
   loadBaseValue(): void {
@@ -20,6 +33,7 @@ export class CajaComponent {
       (data) => {
         console.log(data);
         this.baseValue = data.total_efectivo;
+        this.form.get('efectivoDelDia')?.setValue(this.formatNumber(this.baseValue)); 
       },
       (error) => {
         console.error('Error al obtener el valor de base:', error);
@@ -41,5 +55,36 @@ export class CajaComponent {
     return `$ ${formattedIntegerPart + decimalPart}`;
   }
 
-  
+  submitForm(): void { 
+      const formData = this.form.getRawValue();    
+
+      this.usuarioService.insertEfectivo(formData).subscribe(data => {
+          console.log(data);
+        }, error => {
+          console.error('Error al obtener el valor de base:', error);
+        }
+      )
+
+      console.log('Datos del formulario:', formData);
+      this.form.reset(); 
+  }
+
+  calculateTotal(): void {
+    this.form.get('base')?.valueChanges.subscribe((efectivoDelDia) => {
+      const total = this.baseValue - (efectivoDelDia);
+      this.form.get('total')?.setValue(total, { emitEvent: false });
+    });
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(BaseComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        console.log('Dato guardado desde el diálogo:', result);
+        // Aquí puedes manejar el dato guardado
+      }
+    });
+  }
+
 }

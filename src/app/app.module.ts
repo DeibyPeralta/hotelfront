@@ -25,6 +25,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatNativeDateModule } from '@angular/material/core';
 import { CreateUserComponent } from './usuarios/create-user/create-user.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { BaseComponent } from './base/base.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     HabitacionesComponent,
     EditarHabitacionComponent,
     CreateUserComponent,
+    BaseComponent,
   ],
   imports: [
     MatSelectModule,

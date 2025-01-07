@@ -81,9 +81,12 @@ export class UsuariosService {
     return this.http.get<any>(`${this.baseUrl}/socios/getsocios`);
   }
   
-
   getEfectivo(): Observable<any> {
     return this.http.get<any>(`${this.baseUrl}/tablero/flujo-efectivo`);
+  }
+
+  insertEfectivo(body: any): Observable<any> {
+    return this.http.post<any>(`${this.baseUrl}/tablero/efectivo`, body);
   }
   
 }

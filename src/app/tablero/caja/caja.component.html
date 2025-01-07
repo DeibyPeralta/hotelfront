@@ -1,19 +1,25 @@
+<button mat-button color="primary" (click)="openDialog()">Modificar base</button>
+
 <mat-card class="cash-closing-card">
   <h2>CUADRE DE CAJA</h2>
-  <mat-form-field appearance="outline" class="form-field">
-    <mat-label>BASE</mat-label>
-    <input matInput type="text" [value]="formatNumber(baseValue)" readonly />
-  </mat-form-field>
+  <form [formGroup]="form">
+    
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>BASE</mat-label>
+      <input matInput type="text" formControlName="base"  />
+    </mat-form-field>
+    
+    
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>EFECTIVO DEL DÍA</mat-label>
+      <input matInput type="text" [value]="formatNumber(baseValue)" formControlName="efectivoDelDia"/>
+    </mat-form-field>
+    
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>TOTAL</mat-label>
+      <input matInput type="text" formControlName="total" readonly/>
+    </mat-form-field>
+  </form>
 
-  <mat-form-field appearance="outline" class="form-field">
-    <mat-label>EFECTIVO DEL DÍA</mat-label>
-    <input matInput type="number" />
-  </mat-form-field>
-
-  <mat-form-field appearance="outline" class="form-field">
-    <mat-label>TOTAL</mat-label>
-    <input matInput type="number" />
-  </mat-form-field>
-
-  <button mat-raised-button color="primary">REINICIAR</button>
+  <button mat-raised-button color="primary" (click)="submitForm()">REINICIAR</button>
 </mat-card>
