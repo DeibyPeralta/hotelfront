@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
+import { UsuariosService } from '../tablero/services/usuarios.service';
 
 @Component({
   selector: 'app-base',
@@ -11,6 +12,7 @@ export class BaseComponent {
   inputBase: FormGroup;
 
   constructor( private fb: FormBuilder,
+    private usuarioService: UsuariosService,
     public dialogRef: MatDialogRef<BaseComponent>) {
       this.inputBase = this.fb.group({
         inputValue: [''] 
@@ -18,7 +20,15 @@ export class BaseComponent {
     }
 
     onSave(): void {
-      console.log('Valor guardado:', this.inputBase.value.inputValue);
+      const formData = this.inputBase.getRawValue();       
+
+        this.usuarioService.updateBase(formData).subscribe(data => {
+          // console.log(data);
+        }, error => {
+          console.error('Error al obtener el valor de base:', error);
+        }
+      )
+
       this.dialogRef.close(this.inputBase.value.inputValue); 
     }
   

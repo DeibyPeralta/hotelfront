@@ -88,5 +88,9 @@ export class UsuariosService {
   insertEfectivo(body: any): Observable<any> {
     return this.http.post<any>(`${this.baseUrl}/tablero/efectivo`, body);
   }
+
+  updateBase(body: any): Observable<any> {
+    return this.http.post<any>(`${this.baseUrl}/tablero/update-base`, body);
+  }
   
 }
