@@ -22,7 +22,7 @@ export class HistorialComponent implements OnInit {
   displayedColumns: string[] = [
     'interno', 'num_habitacion', 'hora_llegada', 'aseo', 'llamada', 'destino', 'comentario',
     'hora_salida', 'placa', 'valor_hospedaje', 'valor_lavado', 'valor_parqueo', 'num_factura',
-    'valor_factura', 'Tienda', 'socio', 'fechasalida'
+    'valor_factura', 'Tienda', 'nombre', 'fechasalida'
   ];
   historialForm: FormGroup;
   dataSource = new MatTableDataSource<any>();

@@ -61,16 +61,17 @@ export class VistaSociosComponent {
     });
   }
 
-  onFileChange(event: any) {
-    this.file = event.target.files[0];
-  }
+  onFileSelected(event: any): void {
+    const input = event.target as HTMLInputElement;
+  
+    if (input.files && input.files.length > 0) {
+        const file = input.files[0];      
 
-  uploadFile() {
-    if (this.file) {
-      
-      this.sociosService.updateSocio(this.file).subscribe( data => {
-        console.log(data);
-      })
+          this.sociosService.updateSocio(file).subscribe( data => {
+            console.log(data);
+          })
     }
   }
+
+
 }

@@ -8,6 +8,7 @@ import { HabitacionesComponent } from '../usuarios/habitaciones/habitaciones.com
 import { HistorialComponent } from './historial/historial.component';
 import { AgregarClientesComponent } from './agregar-clientes/agregar-clientes.component';
 import { VistaSociosComponent } from '../socios/vista-socios/vista-socios.component';
+import { CajaComponent } from './caja/caja.component';
 
 const routes: Routes = [
     {
@@ -19,6 +20,7 @@ const routes: Routes = [
             { path: 'habitaciones', component: HabitacionesComponent },
             { path: 'historial', component: HistorialComponent },
             { path: 'registrar/:index', component: CreateTableroComponent },
+            { path: 'caja', component: CajaComponent },
             { path: 'socios', loadChildren: () => import('../socios/socios.module').then(x => x.SociosModule) },
             { path: '**', redirectTo: 'vista', pathMatch: 'full' }
         ]

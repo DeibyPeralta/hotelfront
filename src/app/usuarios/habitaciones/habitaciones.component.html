@@ -1,31 +1,24 @@
 <div class="container">
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-      <!-- Columnas definidas -->
-      <ng-container *ngFor="let column of displayedColumns" [matColumnDef]="column">
-        <th mat-header-cell *matHeaderCellDef>{{ column }}</th>
-        <td mat-cell *matCellDef="let element">
-          <!-- Columnas de datos -->
-          <ng-container *ngIf="column === 'acciones'; else dataColumn">
-            <td mat-cell>
-              <button mat-icon-button (click)="editarFila(element)">
-                <mat-icon>edit</mat-icon>
-              </button>
-              <!-- <button mat-icon-button>
-                <mat-icon>delete</mat-icon>
-              </button>
-              <button mat-icon-button> 
-                <mat-icon>add_circle</mat-icon> 
-              </button>  -->
-            </td>
-          </ng-container>
-          <ng-template #dataColumn>
-            <td mat-cell>{{ element[column] }}</td>
-          </ng-template>
-        </td>
-      </ng-container>
-  
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
-  </div>
-  
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <!-- Columnas definidas -->
+    <ng-container *ngFor="let column of displayedColumns" [matColumnDef]="column">
+      <th mat-header-cell *matHeaderCellDef>{{ column.toUpperCase() }}</th>
+      <td mat-cell *matCellDef="let element">
+        <!-- Columnas de datos -->
+        <ng-container *ngIf="column === 'acciones'; else dataColumn">
+          <td mat-cell>
+            <button mat-icon-button (click)="editarFila(element)">
+              <mat-icon>edit</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+        <ng-template #dataColumn>
+          <td mat-cell>{{ element[column] }}</td>
+        </ng-template>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>

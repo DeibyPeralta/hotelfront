@@ -1,3 +1,8 @@
+// mat-toolbar {
+//   background-color: #589feb; 
+//   color: #ffffff; 
+// }
+
 .example-spacer {
     flex: 1 1 auto;
   }
@@ -6,11 +11,11 @@
     align-items: center;
   }
   .toolbar-logo {
-    width: 100px; /* Ajusta el ancho de la imagen según tus necesidades */
-    height: auto; /* Mantiene la proporción de la imagen */
-    margin: 0 8px 0 0; /* Reduce el margen a la derecha de la imagen */
+    width: 100px; 
+    height: auto; 
+    margin: 0 8px 0 0; 
   }
   
   .example-button {
-    margin: 0 8px; /* Ajusta el margen de los botones según sea necesario */
+    margin: 0 8px; 
   }

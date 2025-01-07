@@ -1,0 +1,19 @@
+<mat-card class="cash-closing-card">
+  <h2>CUADRE DE CAJA</h2>
+  <mat-form-field appearance="outline" class="form-field">
+    <mat-label>BASE</mat-label>
+    <input matInput type="text" [value]="formatNumber(baseValue)" readonly />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="form-field">
+    <mat-label>EFECTIVO DEL DÍA</mat-label>
+    <input matInput type="number" />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="form-field">
+    <mat-label>TOTAL</mat-label>
+    <input matInput type="number" />
+  </mat-form-field>
+
+  <button mat-raised-button color="primary">REINICIAR</button>
+</mat-card>

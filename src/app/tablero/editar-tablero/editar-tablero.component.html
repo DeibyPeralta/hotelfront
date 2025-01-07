@@ -1,47 +1,46 @@
-   
 <div class="container">
-    <h2 class="center">Editar habitación</h2>
-  
-    <form [formGroup]="formulario" class="form-grid">
-      <div class="form-column">
-            <mat-label class="label">Habitación:</mat-label>
-            <mat-form-field class="field">
-            <input type="number" matInput formControlName="num_habitacion"/>
-            </mat-form-field> &nbsp; &nbsp; 
+      <h2 class="center">EDITAR HABITACIÓN</h2>
     
-            <mat-label class="label">Interno:</mat-label>
-            <mat-form-field class="field">
-            <input type="text" matInput formControlName="interno"/>
-            </mat-form-field>
-      </div>
-  
-      <div class="form-column">
-            <mat-label class="label">hora llegada:</mat-label>
-            <mat-form-field class="field">
-            <input type="text" matInput formControlName="hora_llegada"/>
-            </mat-form-field> &nbsp; &nbsp; 
+      <form [formGroup]="formulario" class="form-grid">
+        <div class="form-column">
+              <mat-label class="label">HABITACIÓN:</mat-label>
+              <mat-form-field class="field">
+              <input type="number" matInput formControlName="num_habitacion"/>
+              </mat-form-field> &nbsp; &nbsp; 
+      
+              <mat-label class="label">INTERNO:</mat-label>
+              <mat-form-field class="field">
+              <input type="text" matInput formControlName="interno"/>
+              </mat-form-field>
+        </div>
     
-            <mat-label class="label">Aseo:</mat-label>
-            <mat-form-field class="field">
-            <input type="text" matInput formControlName="aseo"/>
-            </mat-form-field>  
-      </div>
-
-      <div class="form-column">
-            <mat-label class="label">llamada:</mat-label>
-            <mat-form-field class="field">
-            <input type="text" matInput formControlName="llamada"/>
-            </mat-form-field> &nbsp; &nbsp; 
-
-            <mat-label class="label">Destino:</mat-label>
-            <mat-form-field class="field">
-            <input type="text" matInput formControlName="destino"/>
-            </mat-form-field>  
-      </div>
+        <div class="form-column">
+              <mat-label class="label">HORA LLEGADA:</mat-label>
+              <mat-form-field class="field">
+              <input type="text" matInput formControlName="hora_llegada"/>
+              </mat-form-field> &nbsp; &nbsp; 
+      
+              <mat-label class="label">ASEO:</mat-label>
+              <mat-form-field class="field">
+              <input type="text" matInput formControlName="aseo"/>
+              </mat-form-field>  
+        </div>
   
-      <div class="boton">
-        <button class="center" (click)="editarHabitacion()" mat-button>Editar habitación</button>
-      </div>
-    </form>
+        <div class="form-column">
+              <mat-label class="label">LLAMADA:</mat-label>
+              <mat-form-field class="field">
+              <input type="text" matInput formControlName="llamada"/>
+              </mat-form-field> &nbsp; &nbsp; 
+  
+              <mat-label class="label">DESTINO:</mat-label>
+              <mat-form-field class="field">
+              <input type="text" matInput formControlName="destino"/>
+              </mat-form-field>  
+        </div>
+    
+        <div class="boton">
+          <button class="center" (click)="editarHabitacion()" mat-button>EDITAR HABITACIÓN</button>
+        </div>
+      </form>
   </div>
   

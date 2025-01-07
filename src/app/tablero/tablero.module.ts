@@ -30,12 +30,14 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { CajaComponent } from "./caja/caja.component";
 @NgModule({
     declarations: [  
     EditarTableroComponent, 
     DashboardTableroComponent, 
     CreateTableroComponent, 
     VistaTableroComponent, 
+    CajaComponent,
     NavbarComponent, CreateHabitacionComponent, HistorialComponent, CreateHistorialComponent, AgregarClientesComponent,    
   ],
     imports:[
@@ -59,7 +61,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
       MatTabsModule,
       MatTooltipModule,
       MatCheckboxModule,
-      MatSnackBarModule
+      MatSnackBarModule,
+      MatFormFieldModule,
     ],
     providers: [
       DatePipe, 

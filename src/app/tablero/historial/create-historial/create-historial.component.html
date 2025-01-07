@@ -1,9 +1,9 @@
 <div class="scroll-container">
       <div class="container">
-            <h2 class="center">Salida de bus del hotel</h2>
+            <h2 class="center">SALIDA DE BUS DEL HOTEL</h2>
             <form [formGroup]="formulario" class="form-grid">
               <div class="form-item">
-                <mat-label class="label">Habitación:</mat-label>
+                <mat-label class="label">HABITACIÓN:</mat-label>
                 <div class="field-checkbox">                  
                   <mat-form-field class="field small-field">
                     <input type="number" matInput formControlName="num_habitacion" readonly />
@@ -11,31 +11,35 @@
                 </div>
               </div>
               <div class="form-item">
-                <mat-label class="label">hora llegada:</mat-label>
+                <mat-label class="label">HORA LLEGADA:</mat-label>
                 <mat-form-field class="field small-field">
                   <input type="text" matInput formControlName="hora_llegada" readonly />
                 </mat-form-field>
               </div>
               <div class="form-item">
-                <mat-label class="label">llamada:</mat-label>
+                <mat-label class="label">LLAMADA:</mat-label>
                 <mat-form-field class="field small-field">
                   <input type="text" matInput formControlName="llamada" readonly />
                 </mat-form-field>
               </div>
               <div class="form-item">
-                <mat-label class="label">Interno:</mat-label>
+                <mat-label class="label">INTERNO:</mat-label>
                 <mat-form-field class="field small-field">
                   <input type="number" matInput formControlName="interno" readonly />
                 </mat-form-field>
               </div>
               <div class="form-item">
-                <mat-label class="label">Placa:</mat-label>
+                <mat-label class="label">PLACA:</mat-label>
                 <mat-form-field class="field small-field">
-                  <input type="text" matInput formControlName="placa"/>
+                  <input 
+                    type="text" 
+                    matInput 
+                    formControlName="placa" 
+                    style="text-transform: uppercase;" />
                 </mat-form-field>
               </div>
               <div class="form-item">
-                <mat-label class="label">Aseo:</mat-label>
+                <mat-label class="label">ASEO:</mat-label>
                 <div class="field-checkbox">
                   <mat-form-field class="field small-field">
                     <input type="text" matInput formControlName="aseo"/>
@@ -44,7 +48,7 @@
                 </div>
               </div>
               <div class="form-item">
-                <mat-label class="label">Valor Hospedaje:</mat-label>
+                <mat-label class="label">VALOR HOSPEDAJE:</mat-label>
                 <div class="field-checkbox">
                   <mat-form-field class="field small-field">
                     <input type="number" matInput formControlName="valor_hospedaje"/>
@@ -53,7 +57,7 @@
                 </div>
               </div>
               <div class="form-item">
-                <mat-label class="label">valor Lavado:</mat-label>
+                <mat-label class="label">VALOR LAVAVDO:</mat-label>
                 <div class="field-checkbox">
                     <mat-form-field class="field small-field">
                       <input type="number" matInput formControlName="valor_lavado" required />
@@ -62,7 +66,7 @@
                 </div>
               </div>
               <div class="form-item">
-                <mat-label class="label">valor Parqueo:</mat-label>
+                <mat-label class="label">VALOR PARQUEO:</mat-label>
                 <div class="field-checkbox">
                     <mat-form-field class="field small-field">
                       <input type="number" matInput formControlName="valor_parqueo" required />
@@ -71,13 +75,13 @@
                 </div>
               </div>
               <div class="form-item">
-                <mat-label class="label">Num de factura:</mat-label>
+                <mat-label class="label"># DE FACTURA:</mat-label>
                 <mat-form-field class="field small-field">
                   <input type="text" matInput formControlName="num_factura" />
                 </mat-form-field>
               </div>
               <div class="form-item">
-                <mat-label class="label">Valor de factura:</mat-label>
+                <mat-label class="label">VALOR DE FACTURA:</mat-label>
                 <div class="field-checkbox">
                     <mat-form-field class="field small-field">
                       <input type="text" matInput formControlName="valor_factura" />
@@ -86,25 +90,25 @@
                   </div>
                 </div>
               <div class="form-item">
-                  <mat-label class="label">Adicional:</mat-label>
+                  <mat-label class="label">ADICIONAR:</mat-label>
                   <mat-form-field class="field small-field">
                     <input type="text" matInput formControlName="comentario" />
                   </mat-form-field>
                 </div>
                 <div class="form-item">
-                  <mat-label class="label">Socio:</mat-label>
+                  <mat-label class="label">SOCIO:</mat-label>
                   <mat-form-field class="field small-field">
                     <input type="text" matInput formControlName="socio" />
                   </mat-form-field>
                 </div>
               <div class="form-item">
-                <mat-label class="label">Hora salida:</mat-label>
+                <mat-label class="label">HORA SALIDA:</mat-label>
                 <mat-form-field class="field small-field">
                   <input type="text" matInput formControlName="hora_salida" required />
                 </mat-form-field>
               </div>
               <div class="form-item">
-                <mat-label class="label">Ropa:</mat-label>
+                <mat-label class="label">ROPA:</mat-label>
                 <div class="field-checkbox">
                   <mat-form-field class="field small-field">
                     <input type="number" matInput formControlName="ropa"/>
@@ -113,7 +117,7 @@
                 </div>
               </div>
               <div class="form-item">
-                <mat-label class="label">Tienda:</mat-label>
+                <mat-label class="label">TIENDA:</mat-label>
                 <div class="field-checkbox">
                   <mat-form-field class="field small-field">
                     <input type="number" matInput formControlName="tienda"/>
@@ -124,7 +128,7 @@
               
               <div class="form-item">
                 <mat-form-field class="field small-field">
-                  <mat-label class="label">Fecha salida:</mat-label>
+                  <mat-label class="label">FECHA SALIDA:</mat-label>
                   <input matInput [matDatepicker]="picker" formControlName="fechaSalida" required />
                   <mat-hint>MM/DD/YYYY</mat-hint>
                   <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
@@ -133,7 +137,7 @@
               </div>
             </form>
             <div class="center">
-              <button class="center" mat-raised-button color="primary" (click)="guardarHistorial()" [disabled]="!this.formulario.valid" mat-button>Guardar</button>
+              <button class="center" mat-raised-button color="primary" (click)="guardarHistorial()" [disabled]="!this.formulario.valid" mat-button>GUARDAR</button>
             </div>
       </div>     
 </div>

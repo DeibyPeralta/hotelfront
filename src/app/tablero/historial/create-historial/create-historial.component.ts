@@ -13,6 +13,7 @@ export class CreateHistorialComponent {
   displayedColumns: string[] = [ 'num_habitacion', 'interno', 'hora_llegada', 'aseo', 'llamada', 'destino', 'valor', 'comentario', 'hora_salida', 'fecha'];
   formulario: FormGroup;
   fechaFormateada: any;
+  body: any[][] = [];
 
   constructor( 
     private snackBar: MatSnackBar,
@@ -53,12 +54,29 @@ export class CreateHistorialComponent {
 
     guardarHistorial() {
       if (this.formulario.valid) {
-        const formularioData = this.formulario.getRawValue();
-    
+        const formularioData = this.formulario.getRawValue();      
+
+        const camposEfectivo = [
+          { key: 'efectivo_aseo', value: 'aseo' },
+          { key: 'efectivo_tienda', value: 'tienda' },
+          { key: 'efectivo_valor_factura', value: 'valor_factura' },
+          { key: 'efectivo_valor_hospedaje', value: 'valor_hospedaje' },
+          { key: 'efectivo_valor_lavado', value: 'valor_lavado' },
+          { key: 'efectivo_valor_porqueo', value: 'valor_parqueo' },
+          { key: 'efectivo_valor_ropa', value: 'ropa' }
+        ];
+        
+        camposEfectivo.forEach((campo) => {
+            if (formularioData[campo.key] === true) {
+              this.body.push([formularioData[campo.value], campo.value]);
+            }
+        });
+
         this.usuarioService.posthistorialHabitacion(formularioData).subscribe({
           next: (data) => {
             if (data === 'Registro exitoso') {
               this.dialogRef.close();
+              this.historialEfectivo(this.body)
               this.eliminarHabitacion(formularioData.num_habitacion);
             }
           },
@@ -66,10 +84,12 @@ export class CreateHistorialComponent {
             this.mostrarError('Socio no encontrado o inválido. Por favor, inténtalo de nuevo.');
           }
         });
+       
       } else {
         console.log('Formulario inválido');
       }
     }
+
     
     mostrarError(mensaje: string) {
       this.snackBar.open(mensaje, 'Cerrar', {
@@ -82,6 +102,12 @@ export class CreateHistorialComponent {
       this.usuarioService.deleteHabitaciones(numHabitacion).subscribe((data) => {
         console.log(data);        
       });
+    }
+
+    historialEfectivo(body: any){
+      this.usuarioService.posthistorialEfectivo(this.body).subscribe((data) => {
+        console.log(data);
+      })            
     }
 
 }

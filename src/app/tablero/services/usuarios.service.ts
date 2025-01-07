@@ -54,7 +54,10 @@ export class UsuariosService {
   posthistorialHabitacion(body: any): Observable<any> {
     return this.http.post(`${this.baseUrl}/tablero/historial-habitaciones`, body);
   }
-
+  posthistorialEfectivo(body: any): Observable<any> {
+    return this.http.post(`${this.baseUrl}/tablero/cuadre-caja`, body);
+  }
+  
   deleteHabitaciones(numHabitacion: number): Observable<any> {
     return this.http.delete(`${this.baseUrl}/tablero/eliminar-habitaciones/${numHabitacion}`);
   }
@@ -76,6 +79,11 @@ export class UsuariosService {
 
   getSocios(): Observable<any> {
     return this.http.get<any>(`${this.baseUrl}/socios/getsocios`);
+  }
+  
+
+  getEfectivo(): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/tablero/flujo-efectivo`);
   }
   
 }
