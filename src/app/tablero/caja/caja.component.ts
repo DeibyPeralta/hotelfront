@@ -63,7 +63,7 @@ export class CajaComponent {
 
   submitForm(): void { 
       const formData = this.form.getRawValue();    
-
+      console.log(formData)
       this.usuarioService.insertEfectivo(formData).subscribe(data => {
           console.log(data);
         }, error => {
