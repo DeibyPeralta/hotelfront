@@ -11,6 +11,7 @@ import { BaseComponent } from 'src/app/base/base.component';
 })
 export class CajaComponent {
   baseValue!: number;
+  base!: number;
   form: FormGroup;
 
   constructor( private fb: FormBuilder,
@@ -25,21 +26,26 @@ export class CajaComponent {
 
   ngOnInit(): void {
     this.loadBaseValue();
-    this.calculateTotal();
   }
 
   loadBaseValue(): void {
     this.usuarioService.getEfectivo().subscribe(
       (data) => {
         console.log(data);
+        console.log('Paso 35');
         this.baseValue = data.total_efectivo;
+        this.base = data.base;
         this.form.get('efectivoDelDia')?.setValue(this.formatNumber(this.baseValue)); 
+        this.form.get('base')?.setValue(this.formatNumber(this.base)); 
+
+        this.calculateTotal();
       },
       (error) => {
         console.error('Error al obtener el valor de base:', error);
       }
     );
   }
+
 
   formatNumber(value: number): string {
     if (value === null || value === undefined) {
@@ -70,21 +76,30 @@ export class CajaComponent {
   }
 
   calculateTotal(): void {
-    this.form.get('base')?.valueChanges.subscribe((efectivoDelDia) => {
-      const total = this.baseValue - (efectivoDelDia);
-      this.form.get('total')?.setValue(total, { emitEvent: false });
-    });
+  
+    const base = this.base; 
+    const efectivoDelDia = this.baseValue; 
+
+    console.log('baseNumber:', base);
+    console.log('efectivoDelDiaNumber:', efectivoDelDia);
+      
+    const total = efectivoDelDia - base;
+  
+    // Actualiza el campo 'total' del formulario
+    this.form.get('total')?.setValue(this.formatNumber(total));
   }
+  
 
   openDialog(): void {
     const dialogRef = this.dialog.open(BaseComponent);
-
+    
     dialogRef.afterClosed().subscribe(result => {
+      this.loadBaseValue();
       if (result) {
         console.log('Dato guardado desde el diálogo:', result);
-        // Aquí puedes manejar el dato guardado
       }
     });
   }
-
+  
+ 
 }
