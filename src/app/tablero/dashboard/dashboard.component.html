@@ -1,24 +1,46 @@
+<form (ngSubmit)="obtenerHistorial()" class="mb-4 flex flex-wrap gap-4 items-end">
+  <div>
+    <label>Socio:</label>
+    <input type="text" [(ngModel)]="filtroSocio" name="socio" class="input" />
+  </div>
+  <div>
+    <label>Destino:</label>
+    <input type="text" [(ngModel)]="filtroDestino" name="destino" class="input" />
+  </div>
+  <div>
+    <label>Fecha desde:</label>
+    <input type="date" [(ngModel)]="filtroFechaDesde" name="fechaDesde" class="input" />
+  </div>
+  <div>
+    <label>Fecha hasta:</label>
+    <input type="date" [(ngModel)]="filtroFechaHasta" name="fechaHasta" class="input" />
+  </div>
+  <button type="submit" class="btn btn-primary">Filtrar</button>
+</form>
+
 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 p-4">
 
     <div class="bg-white shadow-md rounded-xl p-4">
       <h2 class="text-lg font-bold mb-2">Ingresos por Servicio</h2>
-      <canvas baseChart [data]="barChartServicios" [type]="'bar'"></canvas>
+      <canvas baseChart [data]="doughnutChartServicios" [type]="'doughnut'" style="max-height: 300px; width: 100%;"></canvas>
     </div>
   
     <div class="bg-white shadow-md rounded-xl p-4">
       <h2 class="text-lg font-bold mb-2">Ingresos por Día</h2>
-      <canvas baseChart [data]="barChartIngresosPorDia" [type]="'bar'"></canvas>
+      <canvas baseChart [data]="doughnutChartIngresosPorDia" [type]="'doughnut'" style="max-height: 300px; width: 100%;"></canvas>
     </div>
   
     <div class="bg-white shadow-md rounded-xl p-4">
       <h2 class="text-lg font-bold mb-2">Ingresos por Socio</h2>
-      <canvas baseChart [data]="barChartPorSocio" [type]="'bar'"></canvas>
+      <canvas baseChart [data]="doughnutChartPorSocio" [type]="'doughnut'" style="max-height: 300px; width: 100%;"></canvas>
     </div>
   
     <div class="bg-white shadow-md rounded-xl p-4">
       <h2 class="text-lg font-bold mb-2">Frecuencia por Destino</h2>
-      <canvas baseChart [data]="barChartDestinos" [type]="'bar'"></canvas>
+      <canvas baseChart [data]="doughnutChartDestinos" [type]="'doughnut'" style="max-height: 300px; width: 100%;"></canvas>
     </div>
   
-  </div>
+</div>
+  
+ 
   

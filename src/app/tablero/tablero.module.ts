@@ -34,6 +34,7 @@ import { CajaComponent } from "./caja/caja.component";
 import { HistorialCajaGeneralComponent } from './caja/historial-caja-general/historial-caja-general.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NgChartsModule } from 'ng2-charts';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
     declarations: [  
@@ -67,7 +68,8 @@ import { NgChartsModule } from 'ng2-charts';
       MatCheckboxModule,
       MatSnackBarModule,
       MatFormFieldModule,
-      NgChartsModule
+      NgChartsModule,
+      FormsModule
     ],
     providers: [
       DatePipe, 

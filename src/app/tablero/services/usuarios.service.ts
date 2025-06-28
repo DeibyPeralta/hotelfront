@@ -27,6 +27,16 @@ export class UsuariosService {
     return this.http.get(`${this.baseUrl}/tablero/historial`);
   }
 
+  getHistorialFilter(filtros?: { socio?: string, destino?: string, fechasistema?: string }): Observable<any> {
+    let params: any = {};
+    if (filtros) {
+      if (filtros.socio) params.socio = filtros.socio;
+      if (filtros.destino) params.destino = filtros.destino;
+      if (filtros.fechasistema) params.fechasistema = filtros.fechasistema;
+    }
+    return this.http.get(`${this.baseUrl}/tablero/historial-graficos`, { params });
+  }
+
   getDatosDeTablero(): Observable<any> {
     return this.http.get(`${this.baseUrl}/tablero/vista-tablero`);
   }
