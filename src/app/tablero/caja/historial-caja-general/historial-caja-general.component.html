@@ -1,38 +1,39 @@
 <mat-card class="historial-card">
-    <h2>Historial del Cuadre de Caja</h2>
+    <h2 style="text-align: center; margin-top: 10px;">Historial del Cuadre de Caja</h2>
   
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 bordered-table">
   
       <!-- Fecha -->
       <ng-container matColumnDef="fecha">
         <th mat-header-cell *matHeaderCellDef> Fecha </th>
-        <td mat-cell *matCellDef="let row"> {{ row.fecha | date:'short' }} </td>
+        <td mat-cell *matCellDef="let row"> {{ row.fecha }} </td>
       </ng-container>
   
       <!-- Base -->
       <ng-container matColumnDef="base">
         <th mat-header-cell *matHeaderCellDef> Base </th>
-        <td mat-cell *matCellDef="let row"> {{ row.base | currency:'COP' }} </td>
+        <td mat-cell *matCellDef="let row"> {{ row.base | currency:'COP':'symbol':'1.0-0':'es-CO'}} </td>
       </ng-container>
   
       <!-- Efectivo -->
-      <ng-container matColumnDef="efectivo">
+      <ng-container matColumnDef="efectivodia">
         <th mat-header-cell *matHeaderCellDef> Efectivo Día </th>
-        <td mat-cell *matCellDef="let row"> {{ row.efectivo | currency:'COP' }} </td>
+        <td mat-cell *matCellDef="let row"> {{ row.efectivodia | currency:'COP':'symbol':'1.0-0':'es-CO' }} </td>
       </ng-container>
   
       <!-- Total -->
       <ng-container matColumnDef="total">
         <th mat-header-cell *matHeaderCellDef> Total </th>
-        <td mat-cell *matCellDef="let row"> {{ row.total | currency:'COP' }} </td>
+        <td mat-cell *matCellDef="let row" [ngClass]="{ 'negativo': row.total < 0, 'positivo': row.total > 0 }">
+          {{ row.total | currency:'COP':'symbol':'1.0-0':'es-CO' }}
+        </td>
       </ng-container>
   
-      <!-- Usuario -->
       <ng-container matColumnDef="usuario">
         <th mat-header-cell *matHeaderCellDef> Usuario </th>
         <td mat-cell *matCellDef="let row"> {{ row.usuario }} </td>
       </ng-container>
-  
+
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   

@@ -46,13 +46,14 @@ export class HistorialComponent implements OnInit {
     }
     return true;
   }
+  
   cargarTabla() {
     this.tableroService.getHistorial().subscribe(data => {
-      console.log(data);
       this.dataSource.data = data;
       this.dataSourceTemp.data = data;
     });
   }
+
   downloadExcel() {
     const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.dataSource.data);
     const wb: XLSX.WorkBook = XLSX.utils.book_new();
@@ -62,6 +63,7 @@ export class HistorialComponent implements OnInit {
     saveAs(file, 'datos.xlsx');
     this.snackBar.open('Descargando archivo Excel...', 'Cerrar', { duration: 2000 });
   }
+
   constructor(private tableroService: UsuariosService, private datePipe: DatePipe, private snackBar: MatSnackBar, private fb: FormBuilder) {
     this.historialForm = this.fb.group({
       searchText: [''], // Campo de búsqueda por texto   
@@ -70,6 +72,7 @@ export class HistorialComponent implements OnInit {
     });
     this.cargarTabla();
   }
+
   ngOnInit(): void {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
@@ -83,6 +86,7 @@ export class HistorialComponent implements OnInit {
       return dataStr.indexOf(transformedFilter) !== -1 && withinDateRange;
     };
   }
+
   applyFilter(): void {
     let searchText = this.historialForm.get('searchText')?.value?.toLowerCase();
     if (searchText == "") searchText = null
@@ -137,6 +141,7 @@ export class HistorialComponent implements OnInit {
     // Actualizar los datos filtrados
     this.dataSource.data = filteredData;
   }
+
   clearDateSelection(): void {
     this.historialForm.get('fechaInicio')?.setValue(null);
     this.historialForm.get('fechaFin')?.setValue(null);

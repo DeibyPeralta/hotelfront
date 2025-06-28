@@ -62,6 +62,7 @@ export class VistaTableroComponent implements OnInit {
   }
 
   eliminarFila(element: any) {
+  
     const dialogRef = this.dialog.open(CreateHistorialComponent, {
       data: {
         num_habitacion: element.num_habitacion,
@@ -70,6 +71,9 @@ export class VistaTableroComponent implements OnInit {
         aseo: element.aseo,
         llamada: element.llamada,
         destino: element.destino,
+        placa: element.placa,
+        socio: element.nombre,
+        cod_socio: element.cod_socio
       }
     });
 

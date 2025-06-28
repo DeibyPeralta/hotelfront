@@ -31,6 +31,10 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { CajaComponent } from "./caja/caja.component";
+import { HistorialCajaGeneralComponent } from './caja/historial-caja-general/historial-caja-general.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { NgChartsModule } from 'ng2-charts';
+
 @NgModule({
     declarations: [  
     EditarTableroComponent, 
@@ -38,7 +42,7 @@ import { CajaComponent } from "./caja/caja.component";
     CreateTableroComponent, 
     VistaTableroComponent, 
     CajaComponent,
-    NavbarComponent, CreateHabitacionComponent, HistorialComponent, CreateHistorialComponent, AgregarClientesComponent,    
+    NavbarComponent, CreateHabitacionComponent, HistorialComponent, CreateHistorialComponent, AgregarClientesComponent, HistorialCajaGeneralComponent, DashboardComponent,    
   ],
     imports:[
       CommonModule,
@@ -63,6 +67,7 @@ import { CajaComponent } from "./caja/caja.component";
       MatCheckboxModule,
       MatSnackBarModule,
       MatFormFieldModule,
+      NgChartsModule
     ],
     providers: [
       DatePipe, 

@@ -31,7 +31,13 @@
       formControlName="total" 
       readonly />
     </mat-form-field>
+
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>USUARIO</mat-label>
+      <input matInput type="text" formControlName="usuario" placeholder="Nombre del usuario" />
+    </mat-form-field>
+    
   </form>
 
-  <button mat-raised-button color="primary" (click)="submitForm()">REINICIAR</button>
+  <button mat-raised-button color="primary" (click)="submitForm()">Registrar día</button>
 </mat-card>

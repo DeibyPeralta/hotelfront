@@ -92,5 +92,10 @@ export class UsuariosService {
   updateBase(body: any): Observable<any> {
     return this.http.post<any>(`${this.baseUrl}/tablero/update-base`, body);
   }
+
+  getHistorialCaja(): Observable<any> {
+    return this.http.get(`${this.baseUrl}/tablero/historial-caja`);
+  }
+
   
 }

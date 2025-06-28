@@ -112,3 +112,14 @@ button.mat-raised-button.color-warn {
     flex: 1 1 100%; /* El botón de búsqueda también ocupará toda la fila */
   }
 }
+
+table.mat-table {
+  font-size: 12px; /* Tamaño más pequeño para el texto */
+}
+
+.mat-header-cell, .mat-cell {
+  padding: 4px 8px; /* Menos espacio vertical y horizontal */
+  line-height: 1.2;
+}
+
+

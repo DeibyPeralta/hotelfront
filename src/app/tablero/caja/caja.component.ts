@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { UsuariosService } from '../services/usuarios.service';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { BaseComponent } from 'src/app/base/base.component';
+import { HistorialCajaGeneralComponent } from './historial-caja-general/historial-caja-general.component';
 
 @Component({
   selector: 'app-caja',
@@ -20,7 +21,8 @@ export class CajaComponent {
     this.form = this.fb.group({
       base: [''], 
       efectivoDelDia: [''], 
-      total: [ ''] 
+      total: [ ''],
+      usuario: ['', Validators.required]
     });
    }
 
@@ -103,6 +105,12 @@ export class CajaComponent {
   
  
   verHistorial(): void {
-    // this.router.navigate(['/cuadre-caja/historial']);
+    this.dialog.open(HistorialCajaGeneralComponent, {
+      width: '90vw',
+      height: '80vh',
+      maxHeight: '90vh',
+      panelClass: 'dialog-historial',
+      disableClose: false // o true si no quieres que se cierre al hacer clic fuera
+    });
   }
 }

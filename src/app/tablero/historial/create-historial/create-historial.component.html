@@ -84,7 +84,7 @@
                 <mat-label class="label">VALOR DE FACTURA:</mat-label>
                 <div class="field-checkbox">
                     <mat-form-field class="field small-field">
-                      <input type="text" matInput formControlName="valor_factura" />
+                      <input type="text" matInput formControlName="valor_factura" readonly />
                     </mat-form-field>
                     <mat-checkbox formControlName="efectivo_valor_factura"></mat-checkbox>
                   </div>
@@ -98,9 +98,16 @@
                 <div class="form-item">
                   <mat-label class="label">SOCIO:</mat-label>
                   <mat-form-field class="field small-field">
-                    <input type="text" matInput formControlName="socio" />
+                    <input 
+                      type="text" 
+                      matInput 
+                      formControlName="socio"
+                      [matTooltip]="data.socio"
+                      matTooltipPosition="above"
+                    />
                   </mat-form-field>
                 </div>
+                
               <div class="form-item">
                 <mat-label class="label">HORA SALIDA:</mat-label>
                 <mat-form-field class="field small-field">

@@ -1,0 +1,17 @@
+.dialog-content {
+    padding: 0 24px;
+    min-width: 300px;
+  }
+  
+  .form-field {
+    width: 100%;
+    margin-top: 8px;
+  }
+  
+  input[matInput] {
+    padding: 0.5rem 0.75rem !important;
+    height: 40px !important; /* o el tamaño estándar de tu app */
+    box-sizing: border-box;
+  }
+  
+  

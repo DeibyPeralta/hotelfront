@@ -1,0 +1,24 @@
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 p-4">
+
+    <div class="bg-white shadow-md rounded-xl p-4">
+      <h2 class="text-lg font-bold mb-2">Ingresos por Servicio</h2>
+      <canvas baseChart [data]="barChartServicios" [type]="'bar'"></canvas>
+    </div>
+  
+    <div class="bg-white shadow-md rounded-xl p-4">
+      <h2 class="text-lg font-bold mb-2">Ingresos por Día</h2>
+      <canvas baseChart [data]="barChartIngresosPorDia" [type]="'bar'"></canvas>
+    </div>
+  
+    <div class="bg-white shadow-md rounded-xl p-4">
+      <h2 class="text-lg font-bold mb-2">Ingresos por Socio</h2>
+      <canvas baseChart [data]="barChartPorSocio" [type]="'bar'"></canvas>
+    </div>
+  
+    <div class="bg-white shadow-md rounded-xl p-4">
+      <h2 class="text-lg font-bold mb-2">Frecuencia por Destino</h2>
+      <canvas baseChart [data]="barChartDestinos" [type]="'bar'"></canvas>
+    </div>
+  
+  </div>
+  
