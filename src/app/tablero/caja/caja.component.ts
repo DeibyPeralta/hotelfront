@@ -102,4 +102,7 @@ export class CajaComponent {
   }
   
  
+  verHistorial(): void {
+    // this.router.navigate(['/cuadre-caja/historial']);
+  }
 }
