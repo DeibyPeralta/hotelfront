@@ -35,7 +35,7 @@ import { HistorialCajaGeneralComponent } from './caja/historial-caja-general/his
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NgChartsModule } from 'ng2-charts';
 import { FormsModule } from '@angular/forms';
-
+import { MatExpansionModule } from '@angular/material/expansion';
 @NgModule({
     declarations: [  
     EditarTableroComponent, 
@@ -69,7 +69,8 @@ import { FormsModule } from '@angular/forms';
       MatSnackBarModule,
       MatFormFieldModule,
       NgChartsModule,
-      FormsModule
+      FormsModule,
+      MatExpansionModule
     ],
     providers: [
       DatePipe, 

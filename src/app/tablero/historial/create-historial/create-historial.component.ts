@@ -31,11 +31,11 @@ export class CreateHistorialComponent implements OnInit {
       interno: [this.data.interno, Validators.required],
       placa: [this.data.placa, Validators.required],
       aseo: [this.data.aseo, Validators.required],
-      valor_hospedaje: [0, Validators.required],
-      valor_lavado: [0, Validators.required],
-      valor_parqueo: [0, Validators.required], 
+      valor_hospedaje: [null, Validators.required],
+      valor_lavado: [null, Validators.required],
+      valor_parqueo: [null, Validators.required], 
       num_factura: ['', Validators.required], 
-      valor_factura: [{ value: 0, disabled: true }, Validators.required], // Bloqueado para edición manual
+      valor_factura: [0], // Bloqueado para edición manual
       comentario: [''],
       socio: [this.data.cod_socio, Validators.required],
       fechaSalida: ['', Validators.required],
@@ -58,6 +58,10 @@ export class CreateHistorialComponent implements OnInit {
 
   ngOnInit() {
     this.suscribirCambios();
+    this.formulario.valueChanges.subscribe(() => {
+      this.actualizarFactura();
+    });
+    
   }
 
   /**
@@ -69,21 +73,19 @@ export class CreateHistorialComponent implements OnInit {
     });
   }
 
-  /**
-   * Calcula y actualiza el valor total de la factura.
-   */
   actualizarFactura() {
-    const hospedaje = this.formulario.get('valor_hospedaje')?.value || 0;
-    const lavado = this.formulario.get('valor_lavado')?.value || 0;
-    const parqueo = this.formulario.get('valor_parqueo')?.value || 0;
+    const hospedajeIncluido = !this.formulario.get('efectivo_valor_hospedaje')?.value;
+    const lavadoIncluido = !this.formulario.get('efectivo_valor_lavado')?.value;
+    const parqueoIncluido = !this.formulario.get('efectivo_valor_porqueo')?.value;
+  
+    const hospedaje = hospedajeIncluido ? Number(this.formulario.get('valor_hospedaje')?.value) || 0 : 0;
+    const lavado = lavadoIncluido ? Number(this.formulario.get('valor_lavado')?.value) || 0 : 0;
+    const parqueo = parqueoIncluido ? Number(this.formulario.get('valor_parqueo')?.value) || 0 : 0;
+  
     const total = hospedaje + lavado + parqueo;
-
     this.formulario.get('valor_factura')?.setValue(total, { emitEvent: false });
   }
-
-  /**
-   * Guarda el historial con los datos del formulario si es válido.
-   */
+ 
   guardarHistorial() {
     if (this.formulario.valid) {
       const formularioData = this.formulario.getRawValue();

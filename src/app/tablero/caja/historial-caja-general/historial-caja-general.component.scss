@@ -1,10 +1,13 @@
 .historial-card {
-  margin: 20px auto;
-  max-width: 1200px;
+  margin: 10px; /* margen uniforme */
+  height: calc(100vh - 20px); /* altura total menos márgenes */
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   border-radius: 8px;
-  overflow-x: auto; /* importante para evitar scrolls raros */
+  overflow: auto; /* scroll si el contenido excede */
+  display: flex;
+  flex-direction: column;
 }
+
 
 .bordered-table {
   width: 100%;

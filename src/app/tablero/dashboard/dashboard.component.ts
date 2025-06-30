@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { ChartConfiguration } from 'chart.js';
 import { UsuariosService } from '../services/usuarios.service';
 
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
