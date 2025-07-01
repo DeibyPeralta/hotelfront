@@ -13,26 +13,36 @@ registerLocaleData(localeCo, 'es-CO');
   styleUrls: ['./historial-caja-general.component.scss']
 })
 export class HistorialCajaGeneralComponent {
-  displayedColumns: string[] = ['fecha', 'base', 'efectivodia', 'total', 'usuario']//, 'usuario'];
+  displayedColumns: string[] = ['fecha', 'base', 'efectivodia', 'pagos', 'total', 'usuario', 'turno'];
   dataSource = new MatTableDataSource<any>([]);
 
-
-  constructor(private usuarioService: UsuariosService,
-    public dialogRef: MatDialogRef<HistorialCajaGeneralComponent>)  {}
+  constructor(
+    private usuarioService: UsuariosService,
+    public dialogRef: MatDialogRef<HistorialCajaGeneralComponent>
+  ) {}
 
   ngOnInit(): void {
     this.cargarHistorial();
+
+    this.dataSource.filterPredicate = (data, filter: string) => {
+      const dataStr = Object.values(data).join(' ').toLowerCase();
+      return dataStr.includes(filter);
+    };
   }
 
   cargarHistorial(): void {
     this.usuarioService.getHistorialCaja().subscribe({
       next: (data) => {
         this.dataSource.data = data;
-        console.log(data)
       },
       error: (err) => {
         console.error('Error cargando historial:', err);
       }
     });
+  }
+
+  applyFilter(event: Event): void {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 }

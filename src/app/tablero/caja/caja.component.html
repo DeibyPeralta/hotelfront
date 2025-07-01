@@ -10,7 +10,7 @@
     
     <mat-form-field appearance="outline" class="form-field">
       <mat-label>BASE</mat-label>
-      <input matInput type="text" formControlName="base"  />
+      <input matInput type="text" formControlName="base" readonly/>
     </mat-form-field>
     
     
@@ -37,7 +37,15 @@
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="form-field">
-      <mat-label>USUARIO</mat-label>
+      <mat-label>Turno</mat-label>
+      <mat-select formControlName="turno">
+        <mat-option value="Turno del día">Turno del día</mat-option>
+        <mat-option value="Turno de la noche">Turno de la noche</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Usuario</mat-label>
       <input matInput type="text" formControlName="usuario" placeholder="Nombre del usuario" />
     </mat-form-field>
     

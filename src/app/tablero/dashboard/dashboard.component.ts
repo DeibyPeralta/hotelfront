@@ -13,14 +13,12 @@ import { UsuariosService } from '../services/usuarios.service';
 export class DashboardComponent {
   data: any[] = [];
   filtroSocio: string = '';
-  filtroDestino: string = '';
   filtroFechaDesde: string = '';
   filtroFechaHasta: string = '';
 
   doughnutChartServicios!: ChartConfiguration<'doughnut'>['data'];
   doughnutChartIngresosPorDia!: ChartConfiguration<'doughnut'>['data'];
   doughnutChartPorSocio!: ChartConfiguration<'doughnut'>['data'];
-  doughnutChartDestinos!: ChartConfiguration<'doughnut'>['data'];
 
   constructor(private tableroService: UsuariosService) {}
 
@@ -31,12 +29,11 @@ export class DashboardComponent {
   obtenerHistorial() {
     let fechasistema = '';
     if (this.filtroFechaDesde || this.filtroFechaHasta) {
-      fechasistema = `${this.filtroFechaDesde || ''},${this.filtroFechaHasta || ''}`;
-    }
+      fechasistema = `${this.formatearFecha(this.filtroFechaDesde)},${this.formatearFecha(this.filtroFechaHasta)}`;
+    }    
     
     this.tableroService.getHistorialFilter({
       socio: this.filtroSocio,
-      destino: this.filtroDestino,
       fechasistema: fechasistema
     }).subscribe(data => {
       this.data = data;
@@ -78,20 +75,24 @@ export class DashboardComponent {
       datasets: [{ label: 'Ingresos por socio', data: Object.values(ingresosPorSocio) }]
     };
 
-    // 4. Frecuencia por destino
-    const destinos: { [destino: string]: number } = {};
-    this.data.forEach(r => {
-      const destino = r.destino?.trim() || 'Sin destino';
-      destinos[destino] = (destinos[destino] || 0) + 1;
-    });
-    this.doughnutChartDestinos = {
-      labels: Object.keys(destinos),
-      datasets: [{ label: 'Visitas por destino', data: Object.values(destinos) }]
-    };
   }
 
   sumatoria(campo: string): number {
     return this.data.reduce((sum, r) => sum + parseInt(r[campo] || '0'), 0);
   }
+
+  formatearFecha(fecha: string | Date): string {
+    if (!fecha) return '';
+    const d = new Date(fecha);
+    return d.toISOString().split('T')[0]; // Devuelve "YYYY-MM-DD"
+  }
+
+  limpiarFiltros(): void {
+    this.filtroSocio = '';
+    this.filtroFechaDesde = '';
+    this.filtroFechaHasta = '';
+    this.obtenerHistorial(); // vuelve a cargar los datos sin filtros
+  }
+  
 
 }

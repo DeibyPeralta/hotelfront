@@ -1,13 +1,12 @@
 .historial-card {
-  margin: 10px; /* margen uniforme */
-  height: calc(100vh - 20px); /* altura total menos márgenes */
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  margin: 10px;
+  height: calc(100vh - 20px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
-  overflow: auto; /* scroll si el contenido excede */
+  overflow: auto;
   display: flex;
   flex-direction: column;
 }
-
 
 .bordered-table {
   width: 100%;
@@ -18,28 +17,24 @@ table {
   font-family: 'Segoe UI', 'Roboto', sans-serif;
   font-size: 14px;
   color: #333;
-  width: 100%;
   table-layout: auto;
 }
 
 th {
   font-weight: 600;
-  font-size: 14px;
+  padding: 12px;
   color: #444;
   text-align: left;
-  padding: 12px;
   white-space: nowrap;
 }
 
 td {
   padding: 10px;
   vertical-align: middle;
-  font-weight: 400;
   color: #222;
   white-space: nowrap;
 }
 
-/* Estilos total */
 td.positivo {
   background-color: #e0f4e0;
   color: #2e7d32;
@@ -51,6 +46,11 @@ td.negativo {
   color: #b00020;
   font-weight: 500;
 }
+
 body {
-  overflow-x: hidden; /* oculta scroll horizontal global */
+  overflow-x: hidden;
+}
+.bordered-table tr:hover {
+  background-color: #e1dddd;
+  cursor: pointer;
 }

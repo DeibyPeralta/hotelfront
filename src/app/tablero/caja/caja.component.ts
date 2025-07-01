@@ -23,6 +23,7 @@ export class CajaComponent {
       efectivoDelDia: [''], 
       total: [ ''],
       pagosRealizados: ['', Validators.required],
+      turno: ['', Validators.required],
       usuario: ['', Validators.required]
     });
    }
@@ -49,7 +50,7 @@ export class CajaComponent {
   loadBaseValue(): void {
     this.usuarioService.getEfectivo().subscribe(
       (data) => {
-        console.log(data);
+        
         this.baseValue = data.total_efectivo;
         this.base = data.base;
         this.form.get('efectivoDelDia')?.setValue(this.formatNumber(this.baseValue)); 
@@ -78,18 +79,25 @@ export class CajaComponent {
   }
 
   submitForm(): void { 
-      const formData = this.form.getRawValue();    
-      console.log(formData)
-      this.usuarioService.insertEfectivo(formData).subscribe(data => {
-          console.log(data);
-        }, error => {
-          console.error('Error al obtener el valor de base:', error);
+    const formData = this.form.getRawValue();    
+  
+    this.usuarioService.insertEfectivo(formData).subscribe(
+      response => {
+        if (!response.isError && response.data === 'Ya existía un registro para este turno') {
+          alert('⚠️ Ya existe un registro para este turno. Por favor, cambia el turno e intenta nuevamente.');
+        } else {
+          alert('✅ Datos guardados correctamente.');
+          this.form.reset(); 
         }
-      )
-
-      console.log('Datos del formulario:', formData);
-      this.form.reset(); 
+      },
+      error => {
+        console.error('Error al obtener el valor de base:', error);
+        alert('❌ Error al guardar los datos. Intenta de nuevo.');
+      }
+    );
+  
   }
+  
 
   calculateTotal(): void {
     const baseRaw = this.form.get('base')?.value ?? '0';
