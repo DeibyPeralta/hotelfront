@@ -22,19 +22,34 @@ export class CajaComponent {
       base: [''], 
       efectivoDelDia: [''], 
       total: [ ''],
+      pagosRealizados: ['', Validators.required],
       usuario: ['', Validators.required]
     });
    }
 
   ngOnInit(): void {
+    
+    this.form.get('efectivoDelDia')?.valueChanges.subscribe(value => {
+        const parsed = this.parseCurrency(value);
+        const formatted = this.formatNumber(parsed);
+        
+        if (this.form.get('efectivoDelDia')?.value !== formatted) {
+          this.form.get('efectivoDelDia')?.setValue(formatted, { emitEvent: false });
+        }
+        this.calculateTotal();
+    });
+    
     this.loadBaseValue();
+
+    this.form.get('pagosRealizados')?.valueChanges.subscribe(() => {
+      this.calculateTotal();
+    });
   }
 
   loadBaseValue(): void {
     this.usuarioService.getEfectivo().subscribe(
       (data) => {
         console.log(data);
-        console.log('Paso 35');
         this.baseValue = data.total_efectivo;
         this.base = data.base;
         this.form.get('efectivoDelDia')?.setValue(this.formatNumber(this.baseValue)); 
@@ -47,7 +62,6 @@ export class CajaComponent {
       }
     );
   }
-
 
   formatNumber(value: number): string {
     if (value === null || value === undefined) {
@@ -78,19 +92,28 @@ export class CajaComponent {
   }
 
   calculateTotal(): void {
+    const baseRaw = this.form.get('base')?.value ?? '0';
+    const efectivoRaw = this.form.get('efectivoDelDia')?.value ?? '0';
+    const pagosRaw = this.form.get('pagosRealizados')?.value ?? '0';
   
-    const base = this.base; 
-    const efectivoDelDia = this.baseValue; 
-
-    console.log('baseNumber:', base);
-    console.log('efectivoDelDiaNumber:', efectivoDelDia);
-      
-    const total = efectivoDelDia - base;
+    const base = this.parseCurrency(baseRaw);
+    const efectivo = this.parseCurrency(efectivoRaw);
+    const pagos = this.parseCurrency(pagosRaw);
   
-    // Actualiza el campo 'total' del formulario
+    const total = base + efectivo - pagos;
     this.form.get('total')?.setValue(this.formatNumber(total));
   }
   
+  parseCurrency(value: string): number {
+    if (!value) return 0;
+    const cleaned = value.toString().replace(/[^\d,.-]/g, '').replace(/\./g, '').replace(',', '.');
+    return parseFloat(cleaned) || 0;
+  }
+
+  onPagosRealizadosInput(event: any): void {
+  const rawValue = event.target.value.replace(/\./g, '').replace(/[^\d]/g, '');
+  this.form.get('pagosRealizados')?.setValue(rawValue);
+  }
 
   openDialog(): void {
     const dialogRef = this.dialog.open(BaseComponent);
@@ -102,7 +125,6 @@ export class CajaComponent {
       }
     });
   }
-  
  
   verHistorial(): void {
     this.dialog.open(HistorialCajaGeneralComponent, {

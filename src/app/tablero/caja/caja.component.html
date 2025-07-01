@@ -15,8 +15,16 @@
     
     
     <mat-form-field appearance="outline" class="form-field">
-      <mat-label>EFECTIVO DEL DÍA</mat-label>
-      <input matInput type="text" [value]="formatNumber(baseValue)" formControlName="efectivoDelDia"/>
+      <mat-label>Efectivo del día</mat-label>
+      <input matInput type="text"  formControlName="efectivoDelDia"/>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Pagos realizados</mat-label>
+      <input matInput type="text"
+       [value]="formatNumber(form.get('pagosRealizados')?.value)"
+       (input)="onPagosRealizadosInput($event)"
+       placeholder="Pagos realizados"/>
     </mat-form-field>
     
     <mat-form-field appearance="outline" class="form-field" 
@@ -24,12 +32,8 @@
               'total-positivo': form.get('total')?.value?.includes('-') === false && form.get('total')?.value,
               'total-negativo': form.get('total')?.value?.includes('-')
             }" >
-    <mat-label>TOTAL</mat-label>
-    <input 
-      matInput 
-      type="text" 
-      formControlName="total" 
-      readonly />
+      <mat-label>TOTAL</mat-label>
+      <input matInput type="text" formControlName="total" readonly />
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="form-field">
@@ -39,5 +43,5 @@
     
   </form>
 
-  <button mat-raised-button color="primary" (click)="submitForm()">Registrar día</button>
+  <button mat-raised-button color="primary" (click)="submitForm()" [disabled]="!form.valid">Registrar día</button>
 </mat-card>
