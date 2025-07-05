@@ -23,6 +23,14 @@ export class DashboardComponent {
   constructor(private tableroService: UsuariosService) {}
 
   ngOnInit() {
+    const hoy = new Date();
+    const haceUnMes = new Date();
+    haceUnMes.setMonth(hoy.getMonth() - 1);
+  
+    this.filtroFechaHasta = hoy.toISOString().split('T')[0]; // "YYYY-MM-DD"
+    this.filtroFechaDesde = haceUnMes.toISOString().split('T')[0];
+
+  
     this.obtenerHistorial();    
   }
 

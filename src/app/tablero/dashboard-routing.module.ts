@@ -7,9 +7,10 @@ import { EditarTableroComponent } from './editar-tablero/editar-tablero.componen
 import { HabitacionesComponent } from '../usuarios/habitaciones/habitaciones.component';
 import { HistorialComponent } from './historial/historial.component';
 import { AgregarClientesComponent } from './agregar-clientes/agregar-clientes.component';
-import { VistaSociosComponent } from '../socios/vista-socios/vista-socios.component';
 import { CajaComponent } from './caja/caja.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { ConfigurationComponent } from '../usuarios/configuration/configuration.component';
+import { AuthGuard } from '../guards/auth.guard';
 
 const routes: Routes = [
     {
@@ -19,11 +20,12 @@ const routes: Routes = [
             { path: 'editar', component: EditarTableroComponent },
             { path: 'agregar', component: AgregarClientesComponent },
             { path: 'habitaciones', component: HabitacionesComponent },
-            { path: 'historial', component: HistorialComponent },
+            { path: 'historial', component: HistorialComponent, canActivate: [AuthGuard], data: { roles: ['1'] } },
             { path: 'registrar/:index', component: CreateTableroComponent },
-            { path: 'caja', component: CajaComponent },
+            { path: 'caja', component: CajaComponent, canActivate: [AuthGuard], data: { roles: ['1'] } },
             { path: 'socios', loadChildren: () => import('../socios/socios.module').then(x => x.SociosModule) },
-            { path: 'dashboard', component: DashboardComponent },
+            { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard], data: { roles: ['1'] } },
+            { path: 'permisos', component: ConfigurationComponent, canActivate: [AuthGuard], data: { roles: ['1'] } },
             { path: '**', redirectTo: 'vista', pathMatch: 'full' }
         ]
     }

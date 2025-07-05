@@ -3,7 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { UsuariosService } from '../../tablero/services/usuarios.service';
 import { Route, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
-
+import { jwtDecode } from 'jwt-decode';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -39,7 +39,16 @@ export class LoginComponent {
           this.error();
           this.form.reset();
         }else {
-          this.login();          
+          const token = response.message;
+
+          localStorage.setItem('token', token);
+
+          const decoded: any = jwtDecode(token);
+
+          localStorage.setItem('userRol', decoded.rol);
+          // localStorage.setItem('userNombre', decoded.nombre);
+
+          this.login();     
         }
         
       }

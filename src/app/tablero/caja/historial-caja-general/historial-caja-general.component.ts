@@ -36,7 +36,7 @@ export class HistorialCajaGeneralComponent {
         this.dataSource.data = data;
       },
       error: (err) => {
-        console.error('Error cargando historial:', err);
+       
       }
     });
   }

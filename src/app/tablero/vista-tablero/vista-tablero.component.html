@@ -9,8 +9,15 @@
 
     <ng-container matColumnDef="num_habitacion">
       <th mat-header-cell *matHeaderCellDef> # HABITACIÓN </th>
-      <td mat-cell *matCellDef="let element"> {{element.num_habitacion}} </td>
-    </ng-container>
+      <td mat-cell *matCellDef="let element">
+        <span *ngIf="element.estado !== 'Disponible'" [matTooltip]="'Estado: ' + element.estado">
+          {{ element.num_habitacion }}
+        </span>
+        <span *ngIf="element.estado === 'Disponible'">
+          {{ element.num_habitacion }}
+        </span>
+      </td>
+    </ng-container>    
   
     <ng-container matColumnDef="interno">
       <th mat-header-cell *matHeaderCellDef> INTERNO </th>
@@ -57,47 +64,13 @@
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <tr mat-row 
+        *matRowDef="let row; columns: displayedColumns;" 
+        [ngClass]="{'fila-disponible': row.estado === 'Disponible'}">
+    </tr>
+
+
   </table>
   
 </div>
-  
-  <!-- <div class="container">
 
-  <div class="agregar">
-    <button mat-raised-button (click)="newHabitacion()" color="primary"> Añadir habitación </button>
-  </div>
-  
-      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-
-        <ng-container *ngFor="let column of displayedColumns" [matColumnDef]="column">
-          <th mat-header-cell *matHeaderCellDef>{{ column }}</th>
-          <td mat-cell *matCellDef="let element">
-         
-            <ng-container *ngIf="column === 'acciones'; else dataColumn">
-              <td mat-cell>
-                <button mat-icon-button *ngIf="!shouldShowActions(element)" (click)="editarFila(element)">
-                  <mat-icon>edit</mat-icon>
-                </button>
-                <button mat-icon-button *ngIf="!shouldShowActions(element)" (click)="eliminarFila(element)">
-                  <mat-icon>delete</mat-icon>
-                </button>
-                <button mat-icon-button *ngIf="shouldShowActions(element)" (click)="insertarFila(element.num_habitacion)"> 
-                  <mat-icon>add_circle</mat-icon> 
-                </button> 
-              </td>
-            </ng-container>
-            <ng-template #dataColumn>
-              <td mat-cell>{{ element[column] }}</td>
-            </ng-template>
-          </td>
-        </ng-container>
-    
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-      </table>
-
-
-
-  </div>
-   -->

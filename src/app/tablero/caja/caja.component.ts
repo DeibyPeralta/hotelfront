@@ -59,7 +59,7 @@ export class CajaComponent {
         this.calculateTotal();
       },
       (error) => {
-        console.error('Error al obtener el valor de base:', error);
+                
       }
     );
   }
@@ -91,7 +91,7 @@ export class CajaComponent {
         }
       },
       error => {
-        console.error('Error al obtener el valor de base:', error);
+     
         alert('❌ Error al guardar los datos. Intenta de nuevo.');
       }
     );
@@ -129,7 +129,7 @@ export class CajaComponent {
     dialogRef.afterClosed().subscribe(result => {
       this.loadBaseValue();
       if (result) {
-        console.log('Dato guardado desde el diálogo:', result);
+      
       }
     });
   }

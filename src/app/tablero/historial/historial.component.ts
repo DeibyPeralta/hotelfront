@@ -92,7 +92,7 @@ export class HistorialComponent implements OnInit {
     if (searchText == "") searchText = null
     const fechaInicio = this.historialForm.get('fechaInicio')?.value;
     const fechaFin = this.historialForm.get('fechaFin')?.value;
-    console.log(searchText, "-", fechaInicio, "-", fechaFin)
+
     // 1. Si no hay nada, muestra todos los datos (dataSourceTemp).
     if (!searchText && !fechaInicio && !fechaFin) {
       this.dataSource.data = [...this.dataSourceTemp.data];
@@ -145,6 +145,5 @@ export class HistorialComponent implements OnInit {
   clearDateSelection(): void {
     this.historialForm.get('fechaInicio')?.setValue(null);
     this.historialForm.get('fechaFin')?.setValue(null);
-    console.log('Fechas borradas');
   }
 }

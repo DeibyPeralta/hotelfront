@@ -26,6 +26,9 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { CreateUserComponent } from './usuarios/create-user/create-user.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { BaseComponent } from './base/base.component';
+import { ConfigurationComponent } from './usuarios/configuration/configuration.component';
+import { EditarPermisosUsuarioComponent } from './usuarios/editar-permisos-usuario/editar-permisos-usuario.component';
+import { AuthGuard } from './guards/auth.guard';
 
 @NgModule({
   declarations: [
@@ -34,7 +37,7 @@ import { BaseComponent } from './base/base.component';
     HabitacionesComponent,
     EditarHabitacionComponent,
     CreateUserComponent,
-    BaseComponent,
+    BaseComponent    
   ],
   imports: [
     MatSelectModule,
@@ -58,9 +61,9 @@ import { BaseComponent } from './base/base.component';
     ReactiveFormsModule,
     MatInputModule,
     MatCardModule,
-    MatDialogModule,
-    MatNativeDateModule, 
-    FormsModule  ,MatInputModule ,MatDatepickerModule  
+    MatDialogModule, EditarPermisosUsuarioComponent,
+    MatNativeDateModule, ConfigurationComponent,
+    FormsModule, MatInputModule , MatDatepickerModule  
   ],
   exports: [
     CommonModule,
@@ -74,7 +77,7 @@ import { BaseComponent } from './base/base.component';
     MatInputModule,
     MatCardModule,
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

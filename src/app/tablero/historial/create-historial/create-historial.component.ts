@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { UsuariosService } from '../../services/usuarios.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-
+import { jwtDecode } from 'jwt-decode';
 @Component({
   selector: 'app-create-historial',
   templateUrl: './create-historial.component.html',
@@ -22,7 +22,6 @@ export class CreateHistorialComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any, 
     private fb: FormBuilder
   ) {
-    console.log(this.data);
 
     this.formulario = this.fb.group({
       num_habitacion: [this.data.num_habitacion, Validators.required],
@@ -52,8 +51,6 @@ export class CreateHistorialComponent implements OnInit {
       tienda: [0],
     });
 
-    console.log('Form Controls:', this.formulario.controls);
-
   }
 
   ngOnInit() {
@@ -64,9 +61,6 @@ export class CreateHistorialComponent implements OnInit {
     
   }
 
-  /**
-   * Suscribe los campos de valores para actualizar el valor de factura automáticamente.
-   */
   suscribirCambios() {
     ['valor_hospedaje', 'valor_lavado', 'valor_parqueo'].forEach(campo => {
       this.formulario.get(campo)?.valueChanges.subscribe(() => this.actualizarFactura());
@@ -86,11 +80,76 @@ export class CreateHistorialComponent implements OnInit {
     this.formulario.get('valor_factura')?.setValue(total, { emitEvent: false });
   }
  
+  // guardarHistorial() {
+  //   if (this.formulario.valid) {
+  //     const formularioData = this.formulario.getRawValue();
+  //     this.body = [];
+
+  //     const camposEfectivo = [
+  //         { key: 'efectivo_aseo', value: 'aseo' },
+  //         { key: 'efectivo_tienda', value: 'tienda' },
+  //         { key: 'efectivo_valor_factura', value: 'valor_factura' },
+  //         { key: 'efectivo_valor_hospedaje', value: 'valor_hospedaje' },
+  //         { key: 'efectivo_valor_lavado', value: 'valor_lavado' },
+  //         { key: 'efectivo_valor_porqueo', value: 'valor_parqueo' },
+  //         { key: 'efectivo_valor_ropa', value: 'ropa' }
+  //     ];
+
+  //     camposEfectivo.forEach((campo) => {
+  //       if (formularioData[campo.key]) {
+  //         this.body.push([formularioData[campo.value], campo.value]);
+  //       }
+  //     });
+
+  //     this.usuarioService.posthistorialHabitacion(formularioData).subscribe({
+  //       next: (data) => {
+  //         if (data === 'Registro exitoso') {
+  //           this.dialogRef.close();
+  //           this.historialEfectivo(this.body);
+  //           this.eliminarHabitacion(formularioData.num_habitacion);
+  //         }
+  //       },
+  //       error: () => {
+  //         this.mostrarError('Socio no encontrado o inválido. Por favor, inténtalo de nuevo.');
+  //       }
+  //     });
+
+  //   } else {
+  //     // console.log('Formulario inválido');
+  //   }
+  // }
+
+  mostrarError(mensaje: string) {
+    this.snackBar.open(mensaje, 'Cerrar', {
+      duration: 5000,
+      panelClass: ['snackbar-error'],
+    });
+  }
+
+  eliminarHabitacion(numHabitacion: number): void {
+    this.usuarioService.deleteHabitaciones(numHabitacion).subscribe((data) => {
+      
+    });
+  }
+
+  historialEfectivo(body: any) {
+    this.usuarioService.posthistorialEfectivo(this.body).subscribe((data) => {
+      
+    });
+  }
+
   guardarHistorial() {
     if (this.formulario.valid) {
       const formularioData = this.formulario.getRawValue();
       this.body = [];
-
+  
+      // 👉 Decodificar el token y agregar el usuario
+      const token = localStorage.getItem('token');
+      if (token) {
+        const decoded: any = jwtDecode(token);
+        formularioData.usuario = decoded.nombre || decoded.correo || decoded.id; // Ajusta según el payload de tu token
+      }
+  
       const camposEfectivo = [
         { key: 'efectivo_aseo', value: 'aseo' },
         { key: 'efectivo_tienda', value: 'tienda' },
@@ -100,13 +159,13 @@ export class CreateHistorialComponent implements OnInit {
         { key: 'efectivo_valor_porqueo', value: 'valor_parqueo' },
         { key: 'efectivo_valor_ropa', value: 'ropa' }
       ];
-
+  
       camposEfectivo.forEach((campo) => {
         if (formularioData[campo.key]) {
           this.body.push([formularioData[campo.value], campo.value]);
         }
       });
-
+          console.log(formularioData)
       this.usuarioService.posthistorialHabitacion(formularioData).subscribe({
         next: (data) => {
           if (data === 'Registro exitoso') {
@@ -119,29 +178,9 @@ export class CreateHistorialComponent implements OnInit {
           this.mostrarError('Socio no encontrado o inválido. Por favor, inténtalo de nuevo.');
         }
       });
-
+  
     } else {
-      console.log('Formulario inválido');
+      // console.log('Formulario inválido');
     }
   }
-
-  mostrarError(mensaje: string) {
-    this.snackBar.open(mensaje, 'Cerrar', {
-      duration: 5000,
-      panelClass: ['snackbar-error'],
-    });
-  }
-
-  eliminarHabitacion(numHabitacion: number): void {
-    this.usuarioService.deleteHabitaciones(numHabitacion).subscribe((data) => {
-      console.log(data);
-    });
-  }
-
-  historialEfectivo(body: any) {
-    this.usuarioService.posthistorialEfectivo(this.body).subscribe((data) => {
-      console.log(data);
-    });
-  }
-
 }

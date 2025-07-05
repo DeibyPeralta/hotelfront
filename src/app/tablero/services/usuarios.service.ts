@@ -11,7 +11,6 @@ export class UsuariosService {
   // baseUrl = 'https://hotel-valle.onrender.com';
 
   constructor(private http: HttpClient) { 
-
   }
 
   login(correo: any, password: any): Observable<any> {
@@ -40,6 +39,18 @@ export class UsuariosService {
   getDatosDeTablero(): Observable<any> {
     return this.http.get(`${this.baseUrl}/tablero/vista-tablero`);
   }
+  
+  getPermisos(): Observable<any> {
+    return this.http.get(`${this.baseUrl}/usuarios/permisos`);
+  }
+  
+  editPermisos(body: any): Observable<any> {
+    return this.http.post(`${this.baseUrl}/usuarios/edit-permisos`, body);
+  }
+  
+  deleteUsers(id: string): Observable<any> {
+    return this.http.delete(`${this.baseUrl}/usuarios/delete-users/${id}`);
+  }
 
   postAddDeTablero(body: any): Observable<any> {
     return this.http.post(`${this.baseUrl}/tablero/add-tablero`, body);
@@ -53,6 +64,10 @@ export class UsuariosService {
     return this.http.get(`${this.baseUrl}/tablero/habitaciones`);
   }
 
+  getHabitacionesDisponibles(): Observable<any> {
+    return this.http.get(`${this.baseUrl}/tablero//habitaciones-disponibles`);
+  }
+
   postEditHabitacion(body: any): Observable<any> {
     return this.http.post(`${this.baseUrl}/tablero/editar-habitaciones`, body);
   }
@@ -64,6 +79,7 @@ export class UsuariosService {
   posthistorialHabitacion(body: any): Observable<any> {
     return this.http.post(`${this.baseUrl}/tablero/historial-habitaciones`, body);
   }
+
   posthistorialEfectivo(body: any): Observable<any> {
     return this.http.post(`${this.baseUrl}/tablero/cuadre-caja`, body);
   }

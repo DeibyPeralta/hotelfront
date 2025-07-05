@@ -36,7 +36,6 @@ export class VistaTableroComponent implements OnInit {
 
   cargarTabla() {
     this.tableroService.getDatosDeTablero().subscribe(data => {
-      console.log(data);
       this.dataSource.data = data;
     });
   }
@@ -83,7 +82,6 @@ export class VistaTableroComponent implements OnInit {
   }
 
   insertarFila(index: number) {
-    console.log(`Habitación: ${index}`);
     this.route.navigate(['/dashboard/registrar/', index]);
   }
 

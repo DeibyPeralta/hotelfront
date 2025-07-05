@@ -30,9 +30,9 @@ export class EditarHabitacionComponent {
       guardarCambios() {
         if (this.formulario.valid) {
             const formData = this.formulario.value;
-            console.log( formData );
+            // console.log( formData );
             this.usuarioService.postEditHabitacion(formData).subscribe(data => {
-              console.log(data);
+              // console.log(data);
             })
             this.dialogRef.close();
           }

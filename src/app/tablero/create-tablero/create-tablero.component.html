@@ -5,9 +5,13 @@
         <div class="form-column">
           <div class="form-field">
             <mat-form-field>
-              <mat-label>NÚMERO DE HABITACIÓN</mat-label>
-              <input matInput formControlName="num_habitacion" readonly>
-            </mat-form-field>
+              <mat-label>Número de habitación</mat-label>
+              <mat-select formControlName="num_habitacion">
+                <mat-option *ngFor="let hab of habitacionesDisponibles" [value]="hab">
+                  {{ hab }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>            
           </div>
           <div class="form-field">
             <mat-form-field>

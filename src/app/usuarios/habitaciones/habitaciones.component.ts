@@ -28,12 +28,10 @@ export class HabitacionesComponent implements OnInit {
   cargarTabla() {
     this.tableroService.getHabitaciones().subscribe({
       next: (data) => {
-        console.log('Datos cargados:', data);
-        this.dataSource.data = data; // Asigna directamente al arreglo de datos
+        this.dataSource.data = data; 
       },
       error: (error) => {
         console.error('Error al cargar los datos:', error);
-        // Puedes agregar lógica para mostrar un mensaje de error en la interfaz
       },
     });
   }
@@ -43,10 +41,8 @@ export class HabitacionesComponent implements OnInit {
       data: element,
     });
 
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        this.cargarTabla(); // Recarga la tabla solo si se realizaron cambios
-      }
+    dialogRef.afterClosed().subscribe(() => {
+      this.cargarTabla();
     });
   }
 }

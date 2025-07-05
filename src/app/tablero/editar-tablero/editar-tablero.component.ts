@@ -33,7 +33,6 @@ export class EditarTableroComponent {
 
       // console.log(body);
       this.usuarioService.editar_tablero(body).subscribe((data) => {
-        console.log(data);
         this.dialogRef.close();
       })
 
