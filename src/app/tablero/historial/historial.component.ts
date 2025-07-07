@@ -48,6 +48,7 @@ export class HistorialComponent implements OnInit {
   
   cargarTabla() {
     this.tableroService.getHistorial().subscribe(data => {
+      console.log(data)
       this.dataSource.data = data;
       this.dataSourceTemp.data = data;
     });
@@ -117,7 +118,7 @@ export class HistorialComponent implements OnInit {
           (item.num_factura?.toString().toLowerCase().includes(searchText)) ||
           (item.valor_factura?.toString().toLowerCase().includes(searchText)) ||
           (item.Tienda?.toString().toLowerCase().includes(searchText)) ||
-          (item.socio?.toString().toLowerCase().includes(searchText))
+          (item.nombre?.toString().toLowerCase().includes(searchText))
         );
       });
     }
