@@ -1,5 +1,26 @@
 # Frontend
 
+## Descripción del Proyecto
+
+Frontend para mi plataforma online para la gestión de un hotel. Es una implementación minimanlista enfocada en la funcionalidad simple para mis usuarios.
+
+## Stack Tecnológico
+
+## Frontend
+- **TypeScript** - Lenguaje con tipado estático
+- **CSS Modules** - Estilos modulares
+- **SASS** - Preprocesador de CSS
+
+## Arquitectura                        
+            Frontend (Agular)
+                  │
+            Backend API (TypeScript)
+                  │
+            Database (PostgreSQL)
+
+
+- El enfoque es mantener la simplicidad y funcionalidad core sin features adicionales complejas.
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.0.
 
 ## Development server
@@ -25,3 +46,5 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+

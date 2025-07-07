@@ -4,16 +4,19 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { UsuariosService } from '../../services/usuarios.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { jwtDecode } from 'jwt-decode';
+import { formatDate } from '@angular/common';
 @Component({
   selector: 'app-create-historial',
   templateUrl: './create-historial.component.html',
   styleUrls: ['./create-historial.component.scss'],
 })
+
 export class CreateHistorialComponent implements OnInit {
   
   displayedColumns: string[] = ['num_habitacion', 'interno', 'hora_llegada', 'aseo', 'llamada', 'destino', 'valor', 'comentario', 'hora_salida', 'fecha'];
   formulario: FormGroup;
   body: any[][] = [];
+  private locale = 'es-CO'; 
 
   constructor(
     private snackBar: MatSnackBar,
@@ -45,8 +48,8 @@ export class CreateHistorialComponent implements OnInit {
       efectivo_valor_lavado: [false],
       efectivo_valor_porqueo: [false],
       efectivo_valor_factura: [false],
-      efectivo_valor_ropa: [false],
-      efectivo_tienda: [false],
+      efectivo_valor_ropa: [true],
+      efectivo_tienda: [true],
       efectivo_aseo: [false],
       tienda: [0],
     });
@@ -58,7 +61,12 @@ export class CreateHistorialComponent implements OnInit {
     this.formulario.valueChanges.subscribe(() => {
       this.actualizarFactura();
     });
-    
+
+    const fechaActual = new Date();
+
+    const fechaFormateada = formatDate(fechaActual, 'MM/dd/yyyy', this.locale);
+
+    this.formulario.get('fechaSalida')?.setValue(fechaFormateada);    
   }
 
   suscribirCambios() {
@@ -71,53 +79,18 @@ export class CreateHistorialComponent implements OnInit {
     const hospedajeIncluido = !this.formulario.get('efectivo_valor_hospedaje')?.value;
     const lavadoIncluido = !this.formulario.get('efectivo_valor_lavado')?.value;
     const parqueoIncluido = !this.formulario.get('efectivo_valor_porqueo')?.value;
+    const ropaIncluido = !this.formulario.get('efectivo_valor_ropa')?.value;
+    const tiendaIncluido = !this.formulario.get('efectivo_tienda')?.value;
   
     const hospedaje = hospedajeIncluido ? Number(this.formulario.get('valor_hospedaje')?.value) || 0 : 0;
     const lavado = lavadoIncluido ? Number(this.formulario.get('valor_lavado')?.value) || 0 : 0;
     const parqueo = parqueoIncluido ? Number(this.formulario.get('valor_parqueo')?.value) || 0 : 0;
+    const ropa = ropaIncluido ? Number(this.formulario.get('ropa')?.value) || 0 : 0;
+    const tienda = tiendaIncluido ? Number(this.formulario.get('tienda')?.value) || 0 : 0;
   
-    const total = hospedaje + lavado + parqueo;
+    const total = hospedaje + lavado + parqueo + ropa + tienda;
     this.formulario.get('valor_factura')?.setValue(total, { emitEvent: false });
   }
- 
-  // guardarHistorial() {
-  //   if (this.formulario.valid) {
-  //     const formularioData = this.formulario.getRawValue();
-  //     this.body = [];
-
-  //     const camposEfectivo = [
-  //         { key: 'efectivo_aseo', value: 'aseo' },
-  //         { key: 'efectivo_tienda', value: 'tienda' },
-  //         { key: 'efectivo_valor_factura', value: 'valor_factura' },
-  //         { key: 'efectivo_valor_hospedaje', value: 'valor_hospedaje' },
-  //         { key: 'efectivo_valor_lavado', value: 'valor_lavado' },
-  //         { key: 'efectivo_valor_porqueo', value: 'valor_parqueo' },
-  //         { key: 'efectivo_valor_ropa', value: 'ropa' }
-  //     ];
-
-  //     camposEfectivo.forEach((campo) => {
-  //       if (formularioData[campo.key]) {
-  //         this.body.push([formularioData[campo.value], campo.value]);
-  //       }
-  //     });
-
-  //     this.usuarioService.posthistorialHabitacion(formularioData).subscribe({
-  //       next: (data) => {
-  //         if (data === 'Registro exitoso') {
-  //           this.dialogRef.close();
-  //           this.historialEfectivo(this.body);
-  //           this.eliminarHabitacion(formularioData.num_habitacion);
-  //         }
-  //       },
-  //       error: () => {
-  //         this.mostrarError('Socio no encontrado o inválido. Por favor, inténtalo de nuevo.');
-  //       }
-  //     });
-
-  //   } else {
-  //     // console.log('Formulario inválido');
-  //   }
-  // }
 
   mostrarError(mensaje: string) {
     this.snackBar.open(mensaje, 'Cerrar', {

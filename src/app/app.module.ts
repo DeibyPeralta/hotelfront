@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -77,7 +77,7 @@ import { AuthGuard } from './guards/auth.guard';
     MatInputModule,
     MatCardModule,
   ],
-  providers: [AuthGuard],
+  providers: [AuthGuard, { provide: LOCALE_ID, useValue: 'es-CO' }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
