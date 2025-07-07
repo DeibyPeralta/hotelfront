@@ -125,6 +125,11 @@
       <th mat-header-cell *matHeaderCellDef mat-sort-header> FECHA SALIDA </th>
       <td mat-cell *matCellDef="let element"> {{element.fechasalida | date:'dd/M/yyyy'}} </td>
     </ng-container>
+    
+    <ng-container matColumnDef="registered_by">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Turno </th>
+      <td mat-cell *matCellDef="let element"> {{element.registered_by}} </td>
+    </ng-container>
 
     <!-- Definir las columnas a mostrar -->
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
