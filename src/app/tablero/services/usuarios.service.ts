@@ -26,6 +26,10 @@ export class UsuariosService {
     return this.http.get(`${this.baseUrl}/tablero/historial`);
   }
 
+  actualizarHistorial(body: any): Observable<any> {
+    return this.http.put(`${this.baseUrl}/tablero/update-historial`, body);
+  }
+
   getHistorialFilter(filtros?: { socio?: string, destino?: string, fechasistema?: string }): Observable<any> {
     let params: any = {};
     if (filtros) {
@@ -123,5 +127,12 @@ export class UsuariosService {
     return this.http.get(`${this.baseUrl}/tablero/historial-caja`);
   }
 
+  insertHistorialGastosDiarios(body: any): Observable<any> {
+    return this.http.post<any>(`${this.baseUrl}/tablero/insert-gastos-diarios`, body);
+  }
+  
+  getHistorialGastosDiarios(): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/tablero/get-all-gastos-diarios`);
+  }
   
 }

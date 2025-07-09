@@ -138,7 +138,7 @@ export class CreateHistorialComponent implements OnInit {
           this.body.push([formularioData[campo.value], campo.value]);
         }
       });
-          console.log(formularioData)
+        
       this.usuarioService.posthistorialHabitacion(formularioData).subscribe({
         next: (data) => {
           if (data === 'Registro exitoso') {

@@ -11,6 +11,7 @@ import { CajaComponent } from './caja/caja.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ConfigurationComponent } from '../usuarios/configuration/configuration.component';
 import { AuthGuard } from '../guards/auth.guard';
+import { GastosdiariosComponent } from './gastosdiarios/gastosdiarios.component';
 
 const routes: Routes = [
     {
@@ -20,7 +21,8 @@ const routes: Routes = [
             { path: 'editar', component: EditarTableroComponent },
             { path: 'agregar', component: AgregarClientesComponent },
             { path: 'habitaciones', component: HabitacionesComponent },
-            { path: 'historial', component: HistorialComponent, canActivate: [AuthGuard], data: { roles: ['1'] } },
+            { path: 'historial', component: HistorialComponent },
+            { path: 'gastos-del-dia', component: GastosdiariosComponent },
             { path: 'registrar/:index', component: CreateTableroComponent },
             { path: 'caja', component: CajaComponent, canActivate: [AuthGuard], data: { roles: ['1'] } },
             { path: 'socios', loadChildren: () => import('../socios/socios.module').then(x => x.SociosModule) },

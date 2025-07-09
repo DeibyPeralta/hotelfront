@@ -32,7 +32,6 @@
 .full-width {
   width: 100%;
 }
-
     
 /* Contenedor principal */
 .center-container {
@@ -124,4 +123,12 @@ table.mat-table {
   line-height: 1.2;
 }
 
+// .fila-resaltada {
+//   background-color: rgba(255, 0, 0, 0.1); /* Fondo rojo claro */
+//   border-left: 3px solid red; /* Borde izquierdo rojo */
+// }
 
+/* Opcional: Cambiar el color al pasar el mouse */
+.fila-resaltada:hover {
+  background-color: rgba(255, 0, 0, 0.2);
+}

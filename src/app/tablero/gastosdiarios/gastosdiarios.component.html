@@ -1,0 +1,25 @@
+<form [formGroup]="gastoForm" class="gastos-container">
+  <div class="formulario">
+    <mat-form-field appearance="outline" class="text-field">
+      <mat-label>Descripción</mat-label>
+      <input matInput formControlName="descripcion" placeholder="Escribe una descripción" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="number-field">
+      <mat-label>Valor</mat-label>
+      <input matInput [value]="valorFormateado" (input)="formatearValor($event)" placeholder="$ 0"/>
+    </mat-form-field>
+
+    <div class="botones">
+      <button mat-flat-button class="btn-personalizado cancelar" (click)="cancelar()">Cancelar</button>
+      <button mat-flat-button class="btn-personalizado guardar" (click)="guardar()">Guardar</button>
+    </div>
+      
+  </div>
+
+  <div class="tabla-contenedor">
+    <div class="tabla-placeholder">
+      <p style="text-align:center; opacity:0.6;">Aquí irá la tabla con los datos del backend</p>
+    </div>
+  </div>
+</form>

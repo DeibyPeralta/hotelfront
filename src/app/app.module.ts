@@ -29,6 +29,8 @@ import { BaseComponent } from './base/base.component';
 import { ConfigurationComponent } from './usuarios/configuration/configuration.component';
 import { EditarPermisosUsuarioComponent } from './usuarios/editar-permisos-usuario/editar-permisos-usuario.component';
 import { AuthGuard } from './guards/auth.guard';
+import { EditHistorialComponent } from './tablero/historial/edit-historial/edit-historial.component';
+import { GastosdiariosComponent } from './tablero/gastosdiarios/gastosdiarios.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,7 @@ import { AuthGuard } from './guards/auth.guard';
     HabitacionesComponent,
     EditarHabitacionComponent,
     CreateUserComponent,
-    BaseComponent    
+    BaseComponent,    
   ],
   imports: [
     MatSelectModule,
@@ -59,8 +61,8 @@ import { AuthGuard } from './guards/auth.guard';
     MatTableModule,
     MatFormFieldModule,
     ReactiveFormsModule,
-    MatInputModule,
-    MatCardModule,
+    MatInputModule, GastosdiariosComponent,
+    MatCardModule, EditHistorialComponent,
     MatDialogModule, EditarPermisosUsuarioComponent,
     MatNativeDateModule, ConfigurationComponent,
     FormsModule, MatInputModule , MatDatepickerModule  

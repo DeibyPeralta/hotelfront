@@ -8,6 +8,9 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import * as XLSX from 'xlsx';
 import { saveAs } from 'file-saver';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { jwtDecode } from 'jwt-decode';
+import { EditHistorialComponent } from './edit-historial/edit-historial.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-historial',
@@ -16,18 +19,45 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   providers: [DatePipe]
 })
 export class HistorialComponent implements OnInit {
-
+  isAdmin: boolean = false;
+  
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   displayedColumns: string[] = [
-    'interno', 'num_habitacion', 'hora_llegada', 'comentario', 'hora_salida', 'placa', 'valor_hospedaje', 
-    'valor_lavado', 'valor_parqueo', 'num_factura', 'valor_factura', 'Tienda', 'nombre', 'fechasalida', 'registered_by'//'aseo', 'llamada', 'destino',
+    'interno', 'num_habitacion', 'hora_llegada', 'comentario', 'hora_salida',  'valor_hospedaje', 
+    'valor_lavado', 'valor_parqueo', 'num_factura', 'valor_factura', 'Tienda', 'nombre', 'fechasalida', 'registered_by', 'ropa'//'aseo', 'llamada', 'destino','placa',
   ];
   historialForm: FormGroup;
   dataSource = new MatTableDataSource<any>();
   dataSourceTemp = new MatTableDataSource<any>();
   startDate: Date | null = null;
   endDate: Date | null = null;
+
+  constructor(private tableroService: UsuariosService, 
+      private datePipe: DatePipe, 
+      private snackBar: MatSnackBar, 
+      private fb: FormBuilder,
+      private dialog: MatDialog) {
+    
+    // Obtener el primer día del mes actual
+    const hoy = new Date();
+    // Primer día del mes actual (mes 6 para julio)
+    const startOfMonth = new Date(hoy.getFullYear(), hoy.getMonth(), 1);
+    // Primer día del siguiente mes (mes 7 para agosto)
+    const startOfNextMonth = new Date(hoy.getFullYear(), hoy.getMonth() + 1, 1);
+
+    this.historialForm = this.fb.group({
+      searchText: [''], // Campo de búsqueda por texto   
+      fechaInicio: [startOfMonth],      // Fecha de inicio del rango (primer día del mes actual)
+      fechaFin: [startOfNextMonth]      // Fecha de fin del rango (primer día del siguiente mes)
+    });
+    
+    setTimeout(() => {
+      this.applyFilter();
+    }, 100);
+    
+    this.cargarTabla();
+  }
 
   private isWithinDateRange(fechasalida: string): boolean {
     if (!this.startDate && !this.endDate) {
@@ -46,34 +76,43 @@ export class HistorialComponent implements OnInit {
     return true;
   }
   
-  cargarTabla() {
+  cargarTabla() {    
     this.tableroService.getHistorial().subscribe(data => {
-      console.log(data)
       this.dataSource.data = data;
       this.dataSourceTemp.data = data;
     });
   }
 
   downloadExcel() {
-    const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.dataSource.data);
+    const columnasAExcluir = [
+      'efectivo_valor_hospedaje',
+      'efectivo_valor_lavado',
+      'efectivo_valor_parqueo'
+    ];
+  
+    const datosFiltrados = this.dataSource.data.map((item: any) => {
+      const nuevoItem: any = {};
+      Object.keys(item).forEach(key => {
+        if (!columnasAExcluir.includes(key)) {
+          nuevoItem[key] = item[key];
+        }
+      });
+      return nuevoItem;
+    });
+  
+    const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(datosFiltrados);
     const wb: XLSX.WorkBook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, 'Datos');
+  
     const excelBuffer: any = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
     const file: Blob = new Blob([excelBuffer], { type: 'application/octet-stream' });
     saveAs(file, 'datos.xlsx');
+  
     this.snackBar.open('Descargando archivo Excel...', 'Cerrar', { duration: 2000 });
   }
-
-  constructor(private tableroService: UsuariosService, private datePipe: DatePipe, private snackBar: MatSnackBar, private fb: FormBuilder) {
-    this.historialForm = this.fb.group({
-      searchText: [''], // Campo de búsqueda por texto   
-      fechaInicio: [null],      // Fecha de inicio del rango
-      fechaFin: [null]          // Fecha de fin del rango
-    });
-    this.cargarTabla();
-  }
-
+  
   ngOnInit(): void {
+    
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
     // Filtro por texto y fecha
@@ -85,6 +124,16 @@ export class HistorialComponent implements OnInit {
       const withinDateRange = this.isWithinDateRange(data.fechasalida);
       return dataStr.indexOf(transformedFilter) !== -1 && withinDateRange;
     };
+
+    const token = localStorage.getItem('token');
+    if (token) {
+      const decoded: any = jwtDecode(token);
+      this.isAdmin = decoded.rol === 1; 
+    }
+   
+    if (this.isAdmin) {
+      this.displayedColumns.push('editar'); // añade columna solo si es admin
+    }
   }
 
   applyFilter(): void {
@@ -146,4 +195,18 @@ export class HistorialComponent implements OnInit {
     this.historialForm.get('fechaInicio')?.setValue(null);
     this.historialForm.get('fechaFin')?.setValue(null);
   }
+
+  editarFila(fila: any) {
+    const dialogRef = this.dialog.open(EditHistorialComponent, {
+      width: '650px',
+      data: fila,
+      disableClose: true
+    });
+  
+    
+    dialogRef.afterClosed().subscribe(result => {
+      this.cargarTabla(); // Recargar la tabla
+    });
+  }
+  
 }

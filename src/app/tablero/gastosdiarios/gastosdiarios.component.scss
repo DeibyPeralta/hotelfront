@@ -1,0 +1,86 @@
+.gastos-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 20px;
+  background-color: #f5f5f5;
+}
+
+.formulario {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.text-field,
+.number-field {
+  width: 100%;
+}
+
+.tabla-contenedor {
+  flex: 2;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15); // sombra sutil
+}
+
+.botones {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.tabla-placeholder {
+  flex: 1;
+  padding: 20px;
+  background-color: #f5f5f5;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+}
+.botones {
+  display: flex;
+  justify-content: flex-end; /* o center, o flex-start */
+  gap: 12px;
+  margin-top: 16px;
+}
+.btn-personalizado {
+  padding: 10px 24px;
+  border-radius: 999px; /* más redondeado tipo píldora */
+  font-weight: bold;
+  font-size: 14px;
+  text-transform: none;
+  border: none; /* elimina el borde */
+  box-shadow: none; /* elimina sombra exterior */
+  outline: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-personalizado:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.btn-personalizado.guardar {
+  background-color: #2d8bf0;
+  color: white;
+}
+
+.btn-personalizado.guardar:hover {
+  background-color: #0066cc;
+  transform: scale(1.03);
+}
+
+.btn-personalizado.cancelar {
+  background-color: #e45b51;
+  color: white;
+}
+
+.btn-personalizado.cancelar:hover {
+  background-color: #d32f2f;
+  transform: scale(1.03);
+}

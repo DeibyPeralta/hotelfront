@@ -1,0 +1,96 @@
+
+<h2 mat-dialog-title class="dialog-title">Editar Historial</h2>
+
+<mat-dialog-content>
+  <form [formGroup]="formulario" class="form-grid">
+
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="field">
+        <mat-label>Habitación</mat-label>
+        <input matInput formControlName="num_habitacion" readonly/>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="field">
+        <mat-label>Interno</mat-label>
+        <input matInput formControlName="interno" readonly/>
+      </mat-form-field>
+    </div>
+
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="field">
+        <mat-label>Hora Llegada</mat-label>
+        <input matInput formControlName="hora_llegada" readonly/>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="field">
+        <mat-label>Hora Salida</mat-label>
+        <input matInput formControlName="hora_salida" readonly/>
+      </mat-form-field>
+    </div>
+
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="field">
+        <mat-label>Tienda</mat-label>
+          <input matInput formControlName="valor_tienda" (input)="formatearMiles('valor_tienda')" />          
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="field">
+        <mat-label>Comentario</mat-label>
+        <input matInput formControlName="comentario" />
+      </mat-form-field>
+    </div>
+
+    <div class="form-row">
+      <div class="field-with-checkbox">
+          <mat-form-field appearance="outline" class="field">
+              <mat-label>Hospedaje</mat-label>
+              <input matInput formControlName="valor_hospedaje" (input)="formatearMiles('valor_hospedaje')" />         
+            </mat-form-field>
+        <mat-checkbox formControlName="efectivo_valor_hospedaje"></mat-checkbox>
+        <label class="checkbox-label"></label>
+      </div>
+    
+      <div class="field-with-checkbox">
+        <mat-form-field appearance="outline">
+          <mat-label>Lavado</mat-label>
+          <input matInput formControlName="valor_lavado" (input)="formatearMiles('valor_lavado')" />
+        </mat-form-field>
+        <mat-checkbox formControlName="efectivo_valor_lavado"></mat-checkbox>
+        <label class="checkbox-label"></label>
+      </div>      
+    </div>
+      
+    <div class="form-row">
+      <div class="field-with-checkbox">
+          <mat-form-field appearance="outline" class="field">
+              <mat-label>Parqueo</mat-label>
+              <!-- <input matInput type="number" formControlName="valor_parqueo" /> -->
+              <input matInput formControlName="valor_parqueo" (input)="formatearMiles('valor_parqueo')" />
+            </mat-form-field>
+            <mat-checkbox formControlName="efectivo_valor_parqueo"></mat-checkbox>
+      </div>
+      
+      <div class="field-with-checkbox">
+          <mat-form-field appearance="outline" class="field">
+          <mat-label>Ropa</mat-label>
+          <!-- <input matInput formControlName="ropa" /> -->
+          <input matInput formControlName="ropa" (input)="formatearMiles('ropa')" />
+          </mat-form-field>
+          <mat-checkbox formControlName="efectivo_valor_ropa"></mat-checkbox>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="field">
+        <mat-label>Justificación</mat-label>
+        <textarea matInput rows="3" formControlName="justificacion"></textarea>
+      </mat-form-field>
+    </div>
+    
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end" class="dialog-actions">
+  <button mat-stroked-button color="warn" (click)="cancelar()">Cancelar</button>
+  <button mat-flat-button color="primary" (click)="guardarCambios()" [disabled]="!formulario.valid">Guardar</button>
+</mat-dialog-actions>
