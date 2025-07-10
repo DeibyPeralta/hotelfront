@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { BaseComponent } from 'src/app/base/base.component';
 import { HistorialCajaGeneralComponent } from './historial-caja-general/historial-caja-general.component';
+import { AuthService } from 'src/app/services/AuthService.service';
 
 @Component({
   selector: 'app-caja',
@@ -17,7 +18,8 @@ export class CajaComponent {
 
   constructor( private fb: FormBuilder,
     private dialog: MatDialog,
-    private usuarioService: UsuariosService) {
+    private usuarioService: UsuariosService,
+    private auth: AuthService) {
     this.form = this.fb.group({
       base: [''], 
       efectivoDelDia: [''], 
@@ -29,7 +31,7 @@ export class CajaComponent {
    }
 
   ngOnInit(): void {
-    
+
     this.form.get('efectivoDelDia')?.valueChanges.subscribe(value => {
         const parsed = this.parseCurrency(value);
         const formatted = this.formatNumber(parsed);

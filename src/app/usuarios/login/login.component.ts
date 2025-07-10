@@ -25,7 +25,10 @@ export class LoginComponent {
   }
 
   ngOnInit(){
-
+    const token = localStorage.getItem('token');
+    if (token) {
+      this.router.navigate(['/dashboard/vista']);
+    }
   }
 
   ingresar(){
@@ -40,11 +43,9 @@ export class LoginComponent {
           this.form.reset();
         }else {
           const token = response.message;
-
-          localStorage.setItem('token', token);
-
           const decoded: any = jwtDecode(token);
 
+          localStorage.setItem('token', token);
           localStorage.setItem('userRol', decoded.rol);
           // localStorage.setItem('userNombre', decoded.nombre);
 
@@ -64,9 +65,9 @@ export class LoginComponent {
   }
 
   login(){ 
-    setTimeout(() => {
-      this.router.navigate(['dashboard']);
-    }, 1000);
+    // setTimeout(() => {
+      this.router.navigate(['/dashboard/vista']);
+    // });
   }
 
   register(){
