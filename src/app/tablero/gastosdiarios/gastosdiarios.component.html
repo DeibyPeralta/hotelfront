@@ -18,8 +18,60 @@
   </div>
 
   <div class="tabla-contenedor">
+    <div class="selector-tabla">
+      <mat-button-toggle-group [(ngModel)]="tipoTabla" (ngModelChange)="filtrarGastos()" [ngModelOptions]="{ standalone: true }" name="selectorTabla" aria-label="Selector de tabla" appearance="legacy" class="selector-toggle" >
+        <mat-button-toggle value="actual">Actual</mat-button-toggle>
+        <mat-button-toggle value="historial">Historial</mat-button-toggle>
+      </mat-button-toggle-group>
+
+      <div class="total-contenedor">
+        Total: <strong>{{ totalGastos | currency:'COP' }}</strong>
+      </div>
+    </div>
+    
     <div class="tabla-placeholder">
-      <p style="text-align:center; opacity:0.6;">Aquí irá la tabla con los datos del backend</p>
+      <div class="tabla-datos" *ngIf="gastosFiltrados.length > 0; else sinDatos">
+        <table mat-table [dataSource]="gastosFiltrados" class="mat-elevation-z2">
+      
+          <!-- ID -->
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef>ID</th>
+            <td mat-cell *matCellDef="let elemento">{{ elemento.id }}</td>
+          </ng-container>
+      
+          <!-- Descripción -->
+          <ng-container matColumnDef="descripcion">
+            <th mat-header-cell *matHeaderCellDef>Descripción</th>
+            <td mat-cell *matCellDef="let elemento">{{ elemento.descripcion }}</td>
+          </ng-container>
+      
+          <!-- Valor -->
+          <ng-container matColumnDef="efectivodia">
+            <th mat-header-cell *matHeaderCellDef>Valor</th>
+            <td mat-cell *matCellDef="let elemento">{{ elemento.efectivodia | currency:'COP' }}</td>
+          </ng-container>
+      
+          <!-- Usuario -->
+          <ng-container matColumnDef="usuario">
+            <th mat-header-cell *matHeaderCellDef>Usuario</th>
+            <td mat-cell *matCellDef="let elemento">{{ elemento.usuario }}</td>
+          </ng-container>
+      
+          <!-- Fecha -->
+          <ng-container matColumnDef="fecha">
+            <th mat-header-cell *matHeaderCellDef>Fecha</th>
+            <td mat-cell *matCellDef="let elemento">{{ elemento.fecha | date:'short' }}</td>
+          </ng-container>
+      
+          <tr mat-header-row *matHeaderRowDef="columnasTabla"></tr>
+          <tr mat-row *matRowDef="let row; columns: columnasTabla;"></tr>
+        </table>
+      </div>
+      
+      <ng-template #sinDatos>
+        <p style="text-align:center; opacity:0.6;">No hay datos disponibles</p>
+      </ng-template>
+      
     </div>
   </div>
 </form>

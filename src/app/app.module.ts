@@ -39,7 +39,7 @@ import { GastosdiariosComponent } from './tablero/gastosdiarios/gastosdiarios.co
     HabitacionesComponent,
     EditarHabitacionComponent,
     CreateUserComponent,
-    BaseComponent,    
+    BaseComponent,     
   ],
   imports: [
     MatSelectModule,
@@ -60,7 +60,7 @@ import { GastosdiariosComponent } from './tablero/gastosdiarios/gastosdiarios.co
     MatIconModule,
     MatTableModule,
     MatFormFieldModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule, 
     MatInputModule, GastosdiariosComponent,
     MatCardModule, EditHistorialComponent,
     MatDialogModule, EditarPermisosUsuarioComponent,

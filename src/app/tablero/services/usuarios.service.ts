@@ -135,4 +135,8 @@ export class UsuariosService {
     return this.http.get<any>(`${this.baseUrl}/tablero/get-all-gastos-diarios`);
   }
   
+  totalHistorialGastosDiarios(): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/tablero/total-gastos-diarios`);
+  }
+  
 }

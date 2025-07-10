@@ -7,15 +7,22 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angul
 import { MatIconModule } from '@angular/material/icon';
 import { UsuariosService } from '../services/usuarios.service';
 import { jwtDecode } from 'jwt-decode';
-
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatTableModule } from '@angular/material/table';
+import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-gastosdiarios',
   standalone: true,
-  imports: [MatFormFieldModule,
+  imports: [
+    MatFormFieldModule,
     MatInputModule,
     MatDatepickerModule,
     ReactiveFormsModule,
     MatIconModule,
+    FormsModule,
+    MatButtonToggleModule,
+    MatTableModule,
+    CommonModule,
     MatNativeDateModule,],
   templateUrl: './gastosdiarios.component.html',
   styleUrl: './gastosdiarios.component.scss'
@@ -25,7 +32,11 @@ export class GastosdiariosComponent {
   gastoForm!: FormGroup;
   valorFormateado: string = '';
   gastos: any[] = [];
-
+  tipoTabla: string = 'actual';
+  gastosFiltrados: any[] = [];
+  columnasTabla: string[] = ['id', 'descripcion', 'efectivodia', 'usuario', 'fecha'];
+  totalGastos: number = 0;
+  
   constructor( private tableroService: UsuariosService ) { }
 
   ngOnInit() {
@@ -38,10 +49,15 @@ export class GastosdiariosComponent {
     this.gastoForm.get('valor')!.valueChanges.subscribe((val) => {
       this.formatearValor(val);
     });
-    
+      
+    this.cargarData();
+  }
+
+  cargarData(){
     this.tableroService.getHistorialGastosDiarios().subscribe({
       next: (data) => {
-        this.gastos = data;
+        this.gastos = data.data;
+        this.filtrarGastos();
       },
       error: (err) => {
         console.error('Error al cargar historial de gastos:', err);
@@ -49,6 +65,18 @@ export class GastosdiariosComponent {
     });
   }
 
+  filtrarGastos() {
+    if (this.tipoTabla === 'actual') {
+      this.gastosFiltrados = this.gastos.filter(g => !g.historial || g.historial === 'false' || g.historial === false);
+    } else {
+      this.gastosFiltrados = this.gastos.filter(g => g.historial && g.historial !== 'false');
+    }
+  
+    this.totalGastos = this.gastosFiltrados.reduce((acc, curr) => acc + Number(curr.efectivodia || 0), 0);
+  }
+  
+
+  
   formatearValor(event: Event) {
     const valor = (event.target as HTMLInputElement).value;
     const raw = valor.replace(/[^\d]/g, '');
@@ -83,6 +111,7 @@ export class GastosdiariosComponent {
       next: () => {    
         this.gastoForm.reset();
         this.valorFormateado = '';
+        this.cargarData();
       },
       error: (err) => {
         console.error('Error al guardar el gasto:', err);

@@ -48,19 +48,25 @@ export class CajaComponent {
   }
 
   loadBaseValue(): void {
-    this.usuarioService.getEfectivo().subscribe(
-      (data) => {
-        
-        this.baseValue = data.total_efectivo;
-        this.base = data.base;
-        this.form.get('efectivoDelDia')?.setValue(this.formatNumber(this.baseValue)); 
-        this.form.get('base')?.setValue(this.formatNumber(this.base)); 
 
-        this.calculateTotal();
-      },
-      (error) => {
-                
-      }
+      this.usuarioService.totalHistorialGastosDiarios().subscribe(
+        (data) => {
+          this.baseValue = parseInt(data.data, 10);
+          this.form.get('pagosRealizados')?.setValue(this.baseValue); 
+        }
+      );
+
+      this.usuarioService.getEfectivo().subscribe(
+        (data) => {
+          
+          this.baseValue = data.total_efectivo;
+          this.base = data.base;
+          this.form.get('efectivoDelDia')?.setValue(this.formatNumber(this.baseValue)); 
+          this.form.get('base')?.setValue(this.formatNumber(this.base)); 
+
+          this.calculateTotal();
+        }
+     
     );
   }
 
@@ -90,15 +96,13 @@ export class CajaComponent {
           this.form.reset(); 
         }
       },
-      error => {
-     
+      error => {     
         alert('❌ Error al guardar los datos. Intenta de nuevo.');
       }
     );
   
   }
   
-
   calculateTotal(): void {
     const baseRaw = this.form.get('base')?.value ?? '0';
     const efectivoRaw = this.form.get('efectivoDelDia')?.value ?? '0';
