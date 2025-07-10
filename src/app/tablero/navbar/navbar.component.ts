@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from 'src/app/services/AuthService.service';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -8,12 +8,13 @@ import { AuthService } from 'src/app/services/AuthService.service';
 })
 export class NavbarComponent {
 
-  constructor(private auth: AuthService) {}
+  constructor(private auth: AuthService,
+              private router: Router  ) {}
 
   logout() {
-    localStorage.removeItem('token');
-    localStorage.removeItem('rol');
-    const userData = this.auth.getUserData();
-    console.log('Usuario:', userData.nombre);  // o correo, id, etc.
+    console.log('paso 15')
+    this.auth.logout();
+
+    this.router.navigate(['/login']);
   }
 }

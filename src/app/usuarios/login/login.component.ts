@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
+import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { UsuariosService } from '../../tablero/services/usuarios.service';
-import { Route, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { jwtDecode } from 'jwt-decode';
 @Component({
@@ -26,6 +26,7 @@ export class LoginComponent {
 
   ngOnInit(){
     const token = localStorage.getItem('token');
+    console.log(token)
     if (token) {
       this.router.navigate(['/dashboard/vista']);
     }
