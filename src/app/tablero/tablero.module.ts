@@ -42,7 +42,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
     DashboardTableroComponent, 
     CreateTableroComponent, 
     VistaTableroComponent, 
-    CajaComponent,
+    CajaComponent, 
     NavbarComponent, CreateHabitacionComponent, HistorialComponent, CreateHistorialComponent, AgregarClientesComponent, HistorialCajaGeneralComponent, DashboardComponent,    
   ],
     imports:[

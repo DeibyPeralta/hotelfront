@@ -12,7 +12,7 @@ export class NavbarComponent {
               private router: Router  ) {}
 
   logout() {
-    console.log('paso 15')
+ 
     this.auth.logout();
 
     this.router.navigate(['/login']);

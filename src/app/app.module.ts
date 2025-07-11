@@ -31,6 +31,7 @@ import { EditarPermisosUsuarioComponent } from './usuarios/editar-permisos-usuar
 import { AuthGuard } from './guards/auth.guard';
 import { EditHistorialComponent } from './tablero/historial/edit-historial/edit-historial.component';
 import { GastosdiariosComponent } from './tablero/gastosdiarios/gastosdiarios.component';
+import { FooterComponent } from './tablero/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,7 @@ import { GastosdiariosComponent } from './tablero/gastosdiarios/gastosdiarios.co
     HabitacionesComponent,
     EditarHabitacionComponent,
     CreateUserComponent,
-    BaseComponent,     
+    BaseComponent, 
   ],
   imports: [
     MatSelectModule,
@@ -60,7 +61,7 @@ import { GastosdiariosComponent } from './tablero/gastosdiarios/gastosdiarios.co
     MatIconModule,
     MatTableModule,
     MatFormFieldModule,
-    ReactiveFormsModule, 
+    ReactiveFormsModule, FooterComponent,
     MatInputModule, GastosdiariosComponent,
     MatCardModule, EditHistorialComponent,
     MatDialogModule, EditarPermisosUsuarioComponent,

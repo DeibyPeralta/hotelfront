@@ -9,8 +9,7 @@ export class AuthSesionGuard implements CanActivate {
 
   canActivate(): boolean {
     const loggedIn = this.auth.isLoggedIn();
-    console.log(loggedIn) 
-    console.log('paso 13') 
+
     if (!loggedIn) {
       this.router.navigate(['/login']);
     }

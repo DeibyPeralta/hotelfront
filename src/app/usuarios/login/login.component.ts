@@ -26,7 +26,7 @@ export class LoginComponent {
 
   ngOnInit(){
     const token = localStorage.getItem('token');
-    console.log(token)
+
     if (token) {
       this.router.navigate(['/dashboard/vista']);
     }
