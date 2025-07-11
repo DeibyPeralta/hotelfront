@@ -4,7 +4,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { UsuariosService } from '../../services/usuarios.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { jwtDecode } from 'jwt-decode';
-import { formatDate } from '@angular/common';
+
 @Component({
   selector: 'app-create-historial',
   templateUrl: './create-historial.component.html',
@@ -16,7 +16,6 @@ export class CreateHistorialComponent implements OnInit {
   displayedColumns: string[] = ['num_habitacion', 'interno', 'hora_llegada', 'aseo', 'llamada', 'destino', 'valor', 'comentario', 'hora_salida', 'fecha'];
   formulario: FormGroup;
   body: any[][] = [];
-  private locale = 'es-CO'; 
 
   constructor(
     private snackBar: MatSnackBar,
@@ -25,6 +24,8 @@ export class CreateHistorialComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any, 
     private fb: FormBuilder
   ) {
+    const hoy = new Date();
+    const fechaFormateada = this.formatearFecha(hoy);
 
     this.formulario = this.fb.group({
       num_habitacion: [this.data.num_habitacion, Validators.required],
@@ -40,7 +41,7 @@ export class CreateHistorialComponent implements OnInit {
       valor_factura: [0], // Bloqueado para edición manual
       comentario: [''],
       socio: [this.data.cod_socio, Validators.required],
-      fechaSalida: ['', Validators.required],
+      fechaSalida: [{value: fechaFormateada, disabled: true}],
       destino: [this.data.destino, Validators.required],
       hora_salida: ['', Validators.required],
       ropa: [0, Validators.required],
@@ -61,12 +62,14 @@ export class CreateHistorialComponent implements OnInit {
     this.formulario.valueChanges.subscribe(() => {
       this.actualizarFactura();
     });
+    
+  }
 
-    const fechaActual = new Date();
-
-    const fechaFormateada = formatDate(fechaActual, 'MM/dd/yyyy', this.locale);
-
-    this.formulario.get('fechaSalida')?.setValue(fechaFormateada);    
+  formatearFecha(fecha: Date): string {
+    const dia = String(fecha.getDate()).padStart(2, '0');
+    const mes = String(fecha.getMonth() + 1).padStart(2, '0');
+    const anio = fecha.getFullYear();
+    return `${dia}/${mes}/${anio}`;
   }
 
   suscribirCambios() {

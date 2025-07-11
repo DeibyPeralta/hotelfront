@@ -7,6 +7,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { CreateHistorialComponent } from '../historial/create-historial/create-historial.component';
 import { EditarTableroComponent } from '../editar-tablero/editar-tablero.component';
 import { filter } from 'rxjs/operators';
+import { ParkingWashLogComponent } from '../historial/parking-wash-log/parking-wash-log.component';
 
 @Component({
   selector: 'app-vista-tablero',
@@ -74,6 +75,17 @@ export class VistaTableroComponent implements OnInit {
         socio: element.nombre,
         cod_socio: element.cod_socio
       }
+    });
+
+    dialogRef.afterClosed().subscribe(() => {
+      this.cargarTabla();
+    });
+  }
+
+  parking() {
+  
+    const dialogRef = this.dialog.open(ParkingWashLogComponent, {
+        // width: 'auto',
     });
 
     dialogRef.afterClosed().subscribe(() => {

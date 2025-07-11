@@ -6,13 +6,17 @@
 .mat-elevation-z8 {
     margin-top: 30px; 
   }
-
 .agregar {
-    margin-top: 30px; 
-  }
+  margin-top: 30px; 
+  display: flex; /* Asegura que los botones estén en línea */
+  align-items: center; /* Centra verticalmente los botones */
+}
+
 .fila-disponible:hover {
-    background-color: #d0f0c0 !important; /* verde claro */
     cursor: pointer;
   }
-  
+  .margin-left {
+    margin-left: 10px; /* Espacio entre los botones */
+}
+
   

@@ -1,0 +1,126 @@
+<div class="scroll-container">
+    <div class="container">
+          <h2 class="center">Salida de bus del hotel</h2>
+          <form [formGroup]="formulario" class="form-grid">
+            <div class="form-item">
+              <mat-label class="label">Hora llegada:</mat-label>
+              <mat-form-field class="field small-field">
+                <input type="text" matInput formControlName="hora_llegada" />
+              </mat-form-field>
+            </div>
+            <div class="form-item">
+              <mat-label class="label">INTERNO:</mat-label>
+              <mat-form-field class="field small-field">
+                <input type="number" matInput formControlName="interno" />
+              </mat-form-field>
+            </div>
+            <div class="form-item">
+              <mat-label class="label">Placa:</mat-label>
+              <mat-form-field class="field small-field">
+                <input 
+                  type="text" 
+                  matInput 
+                  formControlName="placa" 
+                  style="text-transform: uppercase;" />
+              </mat-form-field>
+            </div>
+            <div class="form-item">
+              <mat-label class="label">Aseo:</mat-label>
+              <div class="field-checkbox">
+                <mat-form-field class="field small-field">
+                  <input type="text" matInput formControlName="aseo"/>
+                </mat-form-field>
+                  <mat-checkbox formControlName="efectivo_aseo"></mat-checkbox>
+              </div>
+            </div>
+            <div class="form-item">
+              <mat-label class="label">Valor lavado:</mat-label>
+              <div class="field-checkbox">
+                  <mat-form-field class="field small-field">
+                    <input type="number" matInput formControlName="valor_lavado" required />
+                  </mat-form-field>
+                  <mat-checkbox formControlName="efectivo_valor_lavado"></mat-checkbox>
+              </div>
+            </div>
+            <div class="form-item">
+              <mat-label class="label">Valor parqueo:</mat-label>
+              <div class="field-checkbox">
+                  <mat-form-field class="field small-field">
+                    <input type="number" matInput formControlName="valor_parqueo" required />
+                  </mat-form-field>
+                  <mat-checkbox formControlName="efectivo_valor_porqueo"></mat-checkbox>
+              </div>
+            </div>
+            <div class="form-item">
+              <mat-label class="label"># de factura:</mat-label>
+              <mat-form-field class="field small-field">
+                <input type="text" matInput formControlName="num_factura" />
+              </mat-form-field>
+            </div>
+            <div class="form-item">
+              <mat-label class="label">Valor de factura:</mat-label>
+              <div class="field-checkbox">
+                  <mat-form-field class="field small-field">
+                    <input type="text" matInput formControlName="valor_factura" />
+                  </mat-form-field>
+                </div>
+            </div>
+            <div class="form-item">
+              <mat-label class="label">Comentrio:</mat-label>
+              <div class="field-checkbox">
+                <mat-form-field class="field small-field">
+                  <input type="text" matInput formControlName="comentario"/>
+                </mat-form-field>                    
+              </div>
+            </div>
+        
+            <div class="form-item">
+                <mat-label class="label">Socio:</mat-label>
+                <mat-form-field class="field small-field">
+                  <input 
+                    type="text" 
+                    matInput 
+                    formControlName="socio"
+                    matTooltipPosition="above"
+                  />
+                </mat-form-field>
+            </div>
+              
+            <div class="form-item">
+              <mat-label class="label">Hora salida:</mat-label>
+              <mat-form-field class="field small-field">
+                <input type="text" matInput formControlName="hora_salida" required />
+              </mat-form-field>
+            </div>
+            <div class="form-item">
+              <mat-label class="label">Ropa:</mat-label>
+              <div class="field-checkbox">
+                <mat-form-field class="field small-field">
+                  <input type="number" matInput formControlName="ropa"/>
+                </mat-form-field>
+                <mat-checkbox formControlName="efectivo_valor_ropa"></mat-checkbox>
+              </div>
+            </div>
+            <div class="form-item">
+              <mat-label class="label">Tienda:</mat-label>
+              <div class="field-checkbox">
+                <mat-form-field class="field small-field">
+                  <input type="number" matInput formControlName="tienda"/>
+                </mat-form-field>
+                <mat-checkbox formControlName="efectivo_tienda"></mat-checkbox>
+              </div>
+            </div>
+            
+            <div class="form-item">
+              <mat-label class="label">Fecha salida:</mat-label>
+              <mat-form-field class="field small-field">
+                <input type="text" matInput formControlName="fechaSalida" />
+              </mat-form-field>
+            </div>
+
+          </form>
+          <div class="center">
+            <button class="center" mat-raised-button color="primary" (click)="guardarHistorial()" [disabled]="!this.formulario.valid" mat-button>GUARDAR</button>
+          </div>
+    </div>     
+</div>

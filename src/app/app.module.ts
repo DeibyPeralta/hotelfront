@@ -32,6 +32,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { EditHistorialComponent } from './tablero/historial/edit-historial/edit-historial.component';
 import { GastosdiariosComponent } from './tablero/gastosdiarios/gastosdiarios.component';
 import { FooterComponent } from './tablero/footer/footer.component';
+import { ParkingWashLogComponent } from './tablero/historial/parking-wash-log/parking-wash-log.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,7 @@ import { FooterComponent } from './tablero/footer/footer.component';
     MatButtonModule,
     MatIconModule,
     MatTableModule,
-    MatFormFieldModule,
+    MatFormFieldModule, ParkingWashLogComponent,
     ReactiveFormsModule, FooterComponent,
     MatInputModule, GastosdiariosComponent,
     MatCardModule, EditHistorialComponent,
