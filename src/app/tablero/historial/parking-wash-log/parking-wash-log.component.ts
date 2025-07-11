@@ -36,7 +36,6 @@ export class ParkingWashLogComponent {
       interno: ['', Validators.required],
       placa: ['', Validators.required],
       aseo: ['', Validators.required],
-      efectivo_aseo: [false],
       valor_lavado: ['', Validators.required],
       valor_parqueo: ['', Validators.required],
       hora_salida: ['', Validators.required],
@@ -48,14 +47,14 @@ export class ParkingWashLogComponent {
       ropa: [''],
       efectivo_valor_lavado: [false],
       efectivo_valor_porqueo: [false],
-      efectivo_valor_ropa: [false],
-      efectivo_tienda: [false],
+      efectivo_valor_ropa: [true],
+      efectivo_tienda: [true],
       fechaSalida: [{ value: fechaFormateada, disabled: true }]
     });
   }
 
   ngOnInit(): void {
- 
+    this.setupFacturaAutoSum();
   }
 
   formatearFecha(fecha: Date): string {
@@ -71,5 +70,39 @@ export class ParkingWashLogComponent {
       console.log(this.formulario.value);
       // Aquí puedes hacer una llamada a un servicio para guardar los datos
     }
+  }
+
+  setupFacturaAutoSum(): void {
+    const controlsToWatch = [
+      'valor_lavado',
+      'valor_parqueo',
+      'tienda',
+      'ropa',
+      'efectivo_valor_lavado',
+      'efectivo_valor_porqueo',
+      'efectivo_valor_ropa',
+      'efectivo_tienda',
+    ];
+  
+    controlsToWatch.forEach(control => {
+      this.formulario.get(control)?.valueChanges.subscribe(() => {
+        this.calcularValorFactura();
+      });
+    });
+  
+    this.calcularValorFactura(); // Inicial
+  }
+  
+  calcularValorFactura(): void {
+    const f = this.formulario;
+  
+    const lavado = !f.get('efectivo_valor_lavado')?.value ? +f.get('valor_lavado')?.value || 0 : 0;
+    const parqueo = !f.get('efectivo_valor_porqueo')?.value ? +f.get('valor_parqueo')?.value || 0 : 0;
+    const tienda = !f.get('efectivo_tienda')?.value ? +f.get('tienda')?.value || 0 : 0;
+    const ropa = !f.get('efectivo_valor_ropa')?.value ? +f.get('ropa')?.value || 0 : 0;
+  
+    const total = lavado + parqueo + tienda + ropa;
+  
+    f.get('valor_factura')?.setValue(total, { emitEvent: false });
   }
 }
