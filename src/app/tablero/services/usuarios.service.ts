@@ -138,5 +138,9 @@ export class UsuariosService {
   totalHistorialGastosDiarios(): Observable<any> {
     return this.http.get<any>(`${this.baseUrl}/tablero/total-gastos-diarios`);
   }
+
+  obtenerBusPorInterno(interno: number): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/tablero/interno-placa/${interno}`);
+  }
   
 }

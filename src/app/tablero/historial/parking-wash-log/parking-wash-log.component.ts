@@ -7,6 +7,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { debounceTime, distinctUntilChanged, filter } from 'rxjs';
+import { jwtDecode } from 'jwt-decode';
 
 @Component({
   selector: 'app-parking-wash-log',
@@ -24,7 +26,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 })
 export class ParkingWashLogComponent {
   formulario: FormGroup;
-
+  body: any[][] = [];
+  
   constructor(private fb: FormBuilder,
       private usuarioService: UsuariosService,
       private snackBar: MatSnackBar,
@@ -55,6 +58,30 @@ export class ParkingWashLogComponent {
 
   ngOnInit(): void {
     this.setupFacturaAutoSum();
+
+    this.formulario.get('interno')?.valueChanges .pipe(
+        debounceTime(500), 
+        distinctUntilChanged(),
+        filter(value => value && value.toString().length >= 3) 
+      )
+      .subscribe(value => {
+        this.buscarDatosInterno(value);
+      });
+  }
+
+  buscarDatosInterno(interno: number): void {
+    this.usuarioService.obtenerBusPorInterno(interno).subscribe({
+      next: (data) => {
+        this.formulario.patchValue({
+          socio: data.socio || '',
+          placa: data.placa || ''
+        });
+      },
+      error: (err) => {
+        console.error('No se encontró el interno', err);
+        this.formulario.patchValue({ socio: '', placa: '' });
+      }
+    });
   }
 
   formatearFecha(fecha: Date): string {
@@ -66,10 +93,31 @@ export class ParkingWashLogComponent {
 
   guardarHistorial(): void {
     if (this.formulario.valid) {
-      // Lógica para guardar el historial
-      console.log(this.formulario.value);
-      // Aquí puedes hacer una llamada a un servicio para guardar los datos
+
+      const formularioData = this.formulario.getRawValue();
+      this.body = [];
+  
+      const token = localStorage.getItem('token');
+      if (token) {
+        const decoded: any = jwtDecode(token);
+        formularioData.usuario = decoded.nombre || decoded.correo || decoded.id; 
+      }
+      this.usuarioService.posthistorialHabitacion(formularioData).subscribe({
+        next: (data) => {     
+          console.log(data)   
+        },
+        error: () => {
+          this.mostrarError('Socio no encontrado o inválido. Por favor, inténtalo de nuevo.');
+        }
+      });
     }
+  }
+
+  mostrarError(mensaje: string) {
+    this.snackBar.open(mensaje, 'Cerrar', {
+      duration: 5000,
+      panelClass: ['snackbar-error'],
+    });
   }
 
   setupFacturaAutoSum(): void {

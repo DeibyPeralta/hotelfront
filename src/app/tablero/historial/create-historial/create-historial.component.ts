@@ -109,8 +109,7 @@ export class CreateHistorialComponent implements OnInit {
   }
 
   historialEfectivo(body: any) {
-    this.usuarioService.posthistorialEfectivo(this.body).subscribe((data) => {
-      
+    this.usuarioService.posthistorialEfectivo(this.body).subscribe((data) => {      
     });
   }
 
@@ -155,8 +154,6 @@ export class CreateHistorialComponent implements OnInit {
         }
       });
   
-    } else {
-      // console.log('Formulario inválido');
     }
   }
 }
