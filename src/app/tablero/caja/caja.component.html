@@ -22,9 +22,9 @@
     <mat-form-field appearance="outline" class="form-field">
       <mat-label>Pagos realizados</mat-label>
       <input matInput type="text"
-       [value]="formatNumber(form.get('pagosRealizados')?.value)"
-       (input)="onPagosRealizadosInput($event)"
-       placeholder="Pagos realizados"/>
+        [value]="formatNumber(form.get('pagosRealizados')?.value || 0)"
+        (input)="onPagosRealizadosInput($event)"
+        placeholder="Pagos realizados"/>
     </mat-form-field>
     
     <mat-form-field appearance="outline" class="form-field" 

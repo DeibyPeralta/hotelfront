@@ -1,25 +1,36 @@
+<div *ngIf="isLoading" class="spinner-container">
+  <mat-spinner diameter="40"></mat-spinner>
+</div>
+
 <div class="center-container">
-  <div class="search">
-    <!-- Campo de búsqueda -->
-    <mat-form-field class="full-width">
-      <mat-label>Buscar</mat-label>
-      <input matInput (keyup)="applyFilter($event)">
-    </mat-form-field>
+  <div class="search-bar">
     
-    <!-- Botón para cargar archivo Excel -->
-    <button mat-raised-button color="primary" (click)="fileInput.click()" style="margin-left: 16px;">
-      <mat-icon>upload_file</mat-icon>
-      Cargar Excel
-    </button>
-    <input
-      #fileInput
-      type="file"
-      accept=".xlsx, .xls"
-      style="display: none;"
-      (change)="onFileSelected($event)"
-    />
+    <!-- Botón para cargar archivo Excel (izquierda) -->
+    <div class="left-box">
+      <button mat-raised-button color="primary" (click)="fileInput.click()">
+        <mat-icon>upload_file</mat-icon>
+        Cargar Excel
+      </button>
+      <input
+        #fileInput
+        type="file"
+        accept=".xlsx, .xls"
+        style="display: none;"
+        (change)="onFileSelected($event)"
+      />
+    </div>
+
+    <!-- Campo de búsqueda (derecha) -->
+    <div class="right-box">
+      <mat-form-field appearance="fill" class="search-field">
+        <mat-label>Buscar</mat-label>
+        <input matInput (keyup)="applyFilter($event)">
+      </mat-form-field>
+    </div>
+    
   </div>
 </div>
+
 
 <div class="fullTable mat-elevation-z8">
   <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
@@ -72,3 +83,5 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
 </div>
+
+

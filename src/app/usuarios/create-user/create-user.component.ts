@@ -34,7 +34,7 @@ export class CreateUserComponent {
       const body = this.usuarioForm.value;
       // console.log(body);
       this.usuariosService.registro(body).subscribe((data) => {
-        // console.log(data);
+  
         if(data === 'Usuario ya registrado'){
           this.openSnackBar()
         }else{
@@ -44,7 +44,7 @@ export class CreateUserComponent {
   }
 
   openSnackBar() {
-    this._snackBar.open('Usuario ya registrado.', 'Cerrar', {
+    this._snackBar.open('Usuario registrado.', 'Cerrar', {
       duration: 2000, 
       panelClass: ['error-snackbar'], // Clases de estilo adicionales (opcional)
     });

@@ -53,6 +53,8 @@ export class CajaComponent {
 
       this.usuarioService.totalHistorialGastosDiarios().subscribe(
         (data) => {
+          console.log(data)
+          console.log('pago 57')
           this.baseValue = parseInt(data.data, 10);
           this.form.get('pagosRealizados')?.setValue(this.baseValue); 
         }

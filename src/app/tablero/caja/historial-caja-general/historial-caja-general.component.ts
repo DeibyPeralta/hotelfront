@@ -32,7 +32,7 @@ export class HistorialCajaGeneralComponent {
 
   cargarHistorial(): void {
     this.usuarioService.getHistorialCaja().subscribe({
-      next: (data) => {
+      next: (data) => {        
         this.dataSource.data = data;
       },
       error: (err) => {

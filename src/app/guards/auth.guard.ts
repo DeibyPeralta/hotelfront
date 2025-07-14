@@ -24,9 +24,6 @@ export class AuthGuard implements CanActivate {
     try {
       const decoded: any = jwtDecode(token);
       const allowedRoles = route.data['roles'] as Array<string>;
-        console.log(decoded)
-        console.log()
-        console.log(allowedRoles)
       // Validar rol
       if (allowedRoles.includes(decoded.rol.toString())) {
         return true;

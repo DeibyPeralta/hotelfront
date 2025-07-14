@@ -17,6 +17,7 @@ export class VistaSociosComponent {
   displayedColumns: string[] = ['placa', 'cod_interno', 'cod_socio', 'cedula', 'nombre', 'telefono', 'acciones'];
   dataSource = new MatTableDataSource<any>;
   file: File | undefined;
+  isLoading = false;
 
   constructor(private sociosService: UsuariosService,
               public dialog: MatDialog ) {
@@ -25,7 +26,6 @@ export class VistaSociosComponent {
 
   cargarTabla() {
     this.sociosService.getSocios().subscribe( data => {
-        // console.log(data)
         this.dataSource.data = data;
     });
   }
@@ -44,7 +44,6 @@ export class VistaSociosComponent {
 
   editarFila(element: any) {
 
-
     const dialogRef = this.dialog.open(EditSociosComponent, {
       width: '350px',
       height: 'auto',
@@ -61,17 +60,29 @@ export class VistaSociosComponent {
     });
   }
 
-  onFileSelected(event: any): void {
-    const input = event.target as HTMLInputElement;
-  
-    if (input.files && input.files.length > 0) {
-        const file = input.files[0];      
+ onFileSelected(event: any): void {
+  const input = event.target as HTMLInputElement;
 
-          this.sociosService.updateSocio(file).subscribe( data => {
-            console.log(data);
-          })
-    }
+  if (input.files && input.files.length > 0) {
+    const file = input.files[0];
+
+    this.isLoading = true; // ⏳ Activar el spinner
+
+    this.sociosService.updateSocio(file).subscribe({
+      next: (data) => {
+        // console.log('paso 73');
+      },
+      error: (err) => {
+        console.error('Error del backend:', err);
+      },
+      complete: () => {
+        this.isLoading = false; // ✅ Ocultar el spinner al terminar
+        this.cargarTabla()
+      }
+    });
   }
+}
+
 
 
 }

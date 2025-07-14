@@ -11,6 +11,7 @@ import { EditSociosComponent } from './edit-socios/edit-socios.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [VistaSociosComponent, EditSociosComponent],
@@ -26,7 +27,8 @@ import { MatButtonModule } from '@angular/material/button';
     MatInputModule,
     ReactiveFormsModule,
     MatDialogModule, 
-    MatButtonModule 
+    MatButtonModule,
+    MatProgressSpinnerModule
   ],
 })
 export class SociosModule { }

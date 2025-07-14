@@ -16,6 +16,7 @@ export class EditSociosComponent {
       @Inject(MAT_DIALOG_DATA) public data: any){
         console.log(data)
         this.editForm = this.fb.group({
+          id: [data.id],
           placa: [data.placa],
           cod_interno: [data.cod_interno],
           cod_socio: [data.cod_socio],

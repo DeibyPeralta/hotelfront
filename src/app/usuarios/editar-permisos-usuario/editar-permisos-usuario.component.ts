@@ -39,7 +39,8 @@ export class EditarPermisosUsuarioComponent implements OnInit {
       nombre: [this.data.usuario.nombre, Validators.required],
       correo: [this.data.usuario.correo, [Validators.required, Validators.email]],
       telefono: [this.data.usuario.telefono],
-      rol: [this.data.usuario.rol, Validators.required]
+      rol: [this.data.usuario.rol, Validators.required],
+      password: ['']
     });
   }
 
