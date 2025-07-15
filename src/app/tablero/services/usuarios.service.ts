@@ -8,7 +8,6 @@ import { environment } from 'src/environments/environment';
 export class UsuariosService {
 
   baseUrl = environment.baseUrl;
-  // baseUrl = 'https://hotel-valle.onrender.com';
 
   constructor(private http: HttpClient) { 
   }

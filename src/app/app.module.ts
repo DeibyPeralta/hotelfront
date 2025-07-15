@@ -8,7 +8,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -33,6 +33,7 @@ import { EditHistorialComponent } from './tablero/historial/edit-historial/edit-
 import { GastosdiariosComponent } from './tablero/gastosdiarios/gastosdiarios.component';
 import { FooterComponent } from './tablero/footer/footer.component';
 import { ParkingWashLogComponent } from './tablero/historial/parking-wash-log/parking-wash-log.component';
+import { SubdomainInterceptor } from './services/subdomain.interceptor';
 
 @NgModule({
   declarations: [
@@ -81,7 +82,13 @@ import { ParkingWashLogComponent } from './tablero/historial/parking-wash-log/pa
     MatInputModule,
     MatCardModule,
   ],
-  providers: [AuthGuard, { provide: LOCALE_ID, useValue: 'es-CO' }],
+  providers: [AuthGuard, { provide: LOCALE_ID, useValue: 'es-CO' },  [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: SubdomainInterceptor,
+      multi: true
+    }
+  ]],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
