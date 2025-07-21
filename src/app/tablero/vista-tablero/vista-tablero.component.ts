@@ -8,6 +8,7 @@ import { CreateHistorialComponent } from '../historial/create-historial/create-h
 import { EditarTableroComponent } from '../editar-tablero/editar-tablero.component';
 import { filter } from 'rxjs/operators';
 import { ParkingWashLogComponent } from '../historial/parking-wash-log/parking-wash-log.component';
+import { BiometricModalComponent } from 'src/app/biometric-modal/biometric-modal.component';
 
 @Component({
   selector: 'app-vista-tablero',
@@ -104,6 +105,14 @@ export class VistaTableroComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(() => {
       this.cargarTabla();
+    });
+  }
+
+  openBiometricModal(): void {
+    this.dialog.open(BiometricModalComponent, {
+      width: '650px',
+      height: '500px',
+      disableClose: true
     });
   }
 }
