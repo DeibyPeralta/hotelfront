@@ -9,6 +9,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { debounceTime, distinctUntilChanged, filter } from 'rxjs';
 import { jwtDecode } from 'jwt-decode';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-parking-wash-log',
@@ -29,6 +30,7 @@ export class ParkingWashLogComponent {
   body: any[][] = [];
   
   constructor(private fb: FormBuilder,
+    private dialogRef: MatDialogRef<ParkingWashLogComponent> ,
       private usuarioService: UsuariosService,
       private snackBar: MatSnackBar,
   ) {    
@@ -104,7 +106,8 @@ export class ParkingWashLogComponent {
       }
       this.usuarioService.posthistorialHabitacion(formularioData).subscribe({
         next: (data) => {     
-          console.log(data)   
+          // console.log(data)   
+          this.dialogRef.close(true);
         },
         error: () => {
           this.mostrarError('Socio no encontrado o inválido. Por favor, inténtalo de nuevo.');

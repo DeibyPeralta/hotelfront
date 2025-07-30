@@ -85,12 +85,12 @@ export class VistaTableroComponent implements OnInit {
 
   parking() {
   
-    const dialogRef = this.dialog.open(ParkingWashLogComponent, {
-        // width: 'auto',
-    });
+    const dialogRef = this.dialog.open(ParkingWashLogComponent);
 
-    dialogRef.afterClosed().subscribe(() => {
-      this.cargarTabla();
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.cargarTabla(); 
+      }
     });
   }
 
@@ -109,6 +109,14 @@ export class VistaTableroComponent implements OnInit {
   }
 
   openBiometricModal(): void {
+    this.dialog.open(BiometricModalComponent, {
+      width: '650px',
+      height: '500px',
+      disableClose: true
+    });
+  }
+
+  validateBiometricModal(): void {
     this.dialog.open(BiometricModalComponent, {
       width: '650px',
       height: '500px',
